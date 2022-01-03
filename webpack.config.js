@@ -37,7 +37,7 @@ module.exports = () => {
     devServer: {
       historyApiFallback: true,
       static: './',
-      port: 8080,
+      port: 3000,
       hot: isDev,
     },
     module: {
