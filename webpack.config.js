@@ -33,10 +33,11 @@ module.exports = () => {
 
     output: {
       filename: isProd ? "main-[hash:8].js" : undefined,
+      publicPath: "/",
     },
     devServer: {
       historyApiFallback: true,
-      static: './',
+      static: "./",
       port: 3000,
       hot: isDev,
     },
