@@ -1,15 +1,15 @@
 import React from "react";
-import "./app.scss";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Main from "../Main/Main";
 import DeveloperPage from "../DeveloperPage/DeveloperPage";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import theme from "../../stylesGlobal/stylesGlobal";
+import { CssBaseline } from "@mui/material";
 
 const App = () => {
-  const theme = createTheme();
-
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />

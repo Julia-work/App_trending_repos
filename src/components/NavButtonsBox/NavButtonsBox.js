@@ -6,18 +6,22 @@ import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { NoEncryption } from "@mui/icons-material";
 
+
 const useStyles = makeStyles((theme) => ({
   navButtonsBox: {
     "& a": {
       padding: "5px 16px",
       fontWeight: 500,
-      color: "#C9D1D9",
+      // color: theme.palette.primary.main,
+      color: "#ffffff",
       lineHeight: "20px",
-      border: "0.5px solid #30363d",
+      backgroundColor: theme.palette.secondary.main,
+      border: theme.components.border.secondary,
       boxShadow: 0,
       textTransform: "none",
       "&:not(.active)": {
-        backgroundColor: "#161B22",
+        border: theme.components.border.main,
+        backgroundColor: theme.palette.primary.light,
         "&:hover": {
           backgroundColor: "#1c1a1a",
         },
@@ -30,14 +34,6 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "0 6px 6px 0",
     },
   },
-  button: {
-    // padding: 24,
-    // backgroundColor: 'red'
-    // padding: 5px 16px;
-    //   font-weight: 500;
-    //   line-height: 20px;
-    //   color: var(--color-fg-default);
-  },
 }));
 
 const NavButtonsBox = (props) => {
@@ -46,20 +42,10 @@ const NavButtonsBox = (props) => {
 
   return (
     <nav className={classes.navButtonsBox}>
-      <Button
-        variant="contained"
-        component={NavLink}
-        to="/"
-        className={classes.button}
-      >
+      <Button variant="contained" component={NavLink} to="/">
         Repositories
       </Button>
-      <Button
-        variant="contained"
-        component={NavLink}
-        to="/developers"
-        className={classes.button}
-      >
+      <Button variant="contained" component={NavLink} to="/developers">
         Developers
       </Button>
     </nav>

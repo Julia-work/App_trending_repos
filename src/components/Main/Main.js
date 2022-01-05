@@ -9,22 +9,24 @@ import { getRepos } from "../actions/repos";
 import TitleBox from "../TitleBox/TitleBox";
 import NavButtonsBox from "../NavButtonsBox/NavButtonsBox";
 
-import Repo from "./Repo/Repo";
-
-import '../../styles.scss'
+import RepoCard from "./RepoCard/RepoCard";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  contentWrapper: {
     marginTop: 40,
-    borderRadius: 6,
-    border: "1px solid #30363d",
-    margin: "0 auto"
+    padding: "0 16px",
+    margin: "0 auto",
   },
-  navContainer: {
-    backgroundColor: "#161B22",
+  content: {
+    borderRadius: 6,
+    border: theme.components.border.main,
+  },
+  header: {
+    backgroundColor: theme.palette.primary.light,
     borderRadius: "6px 6px 0 0",
-    padding: 24
-  }
+    borderBottom: theme.components.border.main,
+    padding: 16,
+  },
 }));
 
 const Main = () => {
@@ -42,14 +44,15 @@ const Main = () => {
       <Box sx={{ flexGrow: 1 }}>
         <TitleBox subTitle="See what the GitHub community is most excited about today." />
 
-        <Box maxWidth="md" className={classes.container}>
-          <Box className={classes.navContainer}>
-            <NavButtonsBox />
+        <Box maxWidth="md" className={classes.contentWrapper}>
+          <Box className={classes.content}>
+            <Box className={classes.header}>
+              <NavButtonsBox />
+            </Box>
+            {repos.map((repo) => (
+              <RepoCard key={repo.repourl} repo={repo} />
+            ))}
           </Box>
-
-          {repos.map((repo) => (
-            <Repo key={repo.repourl} repo={repo} />
-          ))}
         </Box>
       </Box>
     </main>

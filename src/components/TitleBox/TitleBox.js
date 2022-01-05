@@ -1,14 +1,14 @@
 import React from "react";
 
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 
 const useStyles = makeStyles((theme) => ({
   titleBox: {
-    backgroundColor: "#161B22",
+    backgroundColor: theme.palette.primary.light,
     padding: theme.spacing(5, 2),
-    borderBottom: "1px solid #30363d",
+    borderBottom: theme.components.border.main,
     "& h1": {
       fontSize: 32,
       fontWeight: 600,
