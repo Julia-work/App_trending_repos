@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(5, 2),
     borderBottom: theme.components.border.main,
     "& h1": {
-      fontSize: 32,
+      fontSize: 42,
       fontWeight: 600,
       lineHeight: "48px",
     },
