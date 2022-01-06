@@ -4,16 +4,22 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
+const colorLightGrey = "#8b949e";
+const colorGrey = "#161b22";
+const colorDarkGrey = "#0D1117";
+const colorBlue = "#1F6FEB";
+const colorBorder = "#30363d";
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#8b949e", // light-grey 
-      light: "#161b22", // color-grey
-      dark: "#0D1117", // dark-grey
+      main: colorLightGrey,
+      light: colorGrey,
+      dark: colorDarkGrey,
     },
     secondary: {
-      main: "#1F6FEB", // color-blue
-      light: "#30363d", // border-bottom
+      main: colorBlue,
+      light: colorBorder,
     },
   },
   typography: {
@@ -23,21 +29,36 @@ const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: "#0D1117",
+          backgroundColor: colorDarkGrey,
           margin: 0,
-          color: "#8b949e",
+          color: colorLightGrey,
         },
         a: {
-          display: "flex"
-        }
+          display: "flex",
+        },
       },
     },
     border: {
-      main: "1px solid #30363d",
-      secondary: "1px solid #1F6FEB",
+      main: `1px solid ${colorBorder}`,
+      secondary: `1px solid ${colorBlue}`,
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          border: `1px solid ${colorBorder}`,
+          backgroundColor: colorGrey,
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          // backgroundColor: "#1F6FEB",
+        },
+      },
     },
   },
-
- 
 });
 export default theme;

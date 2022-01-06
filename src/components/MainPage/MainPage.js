@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Main = () => {
+const MainPage = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -59,4 +59,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainPage;

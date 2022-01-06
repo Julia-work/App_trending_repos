@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Main from "../Main/Main";
+import MainPage from "../MainPage/MainPage";
 import DeveloperPage from "../DeveloperPage/DeveloperPage";
 import { ThemeProvider } from "@mui/material";
 import theme from "../../stylesGlobal/stylesGlobal";
@@ -12,7 +12,7 @@ const App = () => {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/developers" element={<DeveloperPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

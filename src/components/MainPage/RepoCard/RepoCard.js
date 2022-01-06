@@ -1,9 +1,9 @@
 import React from "react";
+import ButtonStar from "../../ButtonStar/ButtonStar";
 import {
   Box,
   Link,
   Typography,
-  Item,
   Avatar,
   List,
   ListItem,
@@ -13,7 +13,6 @@ import {
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
 import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
-
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     fontWeight: 400,
     marginBottom: 4,
-    color: `${theme.palette.secondary.main} !important`,
   },
   flexContainer: {
     display: "flex",
@@ -36,12 +34,6 @@ const useStyles = makeStyles((theme) => ({
     "& > :last-child": {
       justifyContent: "flex-end",
     },
-    "& li": {
-      fontSize: `14px !important`,
-    },
-    "& span": {
-      fontSize: `14px !important`,
-    },
   },
 }));
 
@@ -51,11 +43,13 @@ const RepoCard = (props) => {
 
   return (
     <Box className={classes.cardContainer}>
-      <Typography variant="h2" gutterBottom lineHeight={1.25} fontSize={20}>
+      <ButtonStar />
+      <Typography variant="h2" gutterBottom>
         <Link
           href={repo.repourl}
           underline="hover"
           className={classes.cardTitle}
+          color="secondary.main"
           title={repo.author}
         >
           {" "}
@@ -73,7 +67,7 @@ const RepoCard = (props) => {
         {repo.repodesc}
       </Typography>
 
-      <Box className={`${classes.flexContainer} ${classes.cardFooter}`}>
+      <Box className={[classes.flexContainer, classes.cardFooter].join(" ")}>
         <Box className={classes.flexContainer}>
           <List className={classes.flexContainer}>
             {repo.language ? (
@@ -82,23 +76,28 @@ const RepoCard = (props) => {
               </ListItem>
             ) : null}
 
-            <ListItem disablePadding sx={{ marginRight: 2 }}>
-              <Link href={"#"} underline="none">
-                {" "}
-                <StarOutlineIcon fontSize="small" sx={{ marginRight: 1 }} />
-                {repo.stars}
-              </Link>
-            </ListItem>
-            <ListItem disablePadding sx={{ marginRight: 2 }}>
-              <Link href={"#"} underline="none">
-                {" "}
-                <AccountTreeOutlinedIcon
-                  fontSize="small"
-                  sx={{ marginRight: 1 }}
-                />
-                {repo.forks}
-              </Link>
-            </ListItem>
+            {repo.stars ? (
+              <ListItem disablePadding sx={{ marginRight: 2 }}>
+                <Link href={"#"} underline="none" sx={{ fontSize: "14px" }}>
+                  {" "}
+                  <StarOutlineIcon fontSize="small" sx={{ marginRight: 1 }} />
+                  {repo.stars}
+                </Link>
+              </ListItem>
+            ) : null}
+
+            {repo.forks ? (
+              <ListItem disablePadding sx={{ marginRight: 2 }}>
+                <Link href={"#"} underline="none" sx={{ fontSize: "14px" }}>
+                  {" "}
+                  <AccountTreeOutlinedIcon
+                    fontSize="small"
+                    sx={{ marginRight: 1 }}
+                  />
+                  {repo.forks}
+                </Link>
+              </ListItem>
+            ) : null}
           </List>
 
           <Box className={classes.flexContainer}>
@@ -107,7 +106,11 @@ const RepoCard = (props) => {
             </Typography>
             <List className={classes.flexContainer}>
               {repo.builtby.map((autor) => (
-                <ListItem disablePadding sx={{ marginRight: 1 }}>
+                <ListItem
+                  key={autor.url}
+                  disablePadding
+                  sx={{ marginRight: 1 }}
+                >
                   <Link
                     href={autor.url}
                     underline="none"
@@ -129,7 +132,9 @@ const RepoCard = (props) => {
 
         <Box className={classes.flexContainer}>
           <StarOutlineIcon fontSize="small" />
-          <Typography>{`${repo.laststars} stars today`}</Typography>
+          <Typography
+            sx={{ fontSize: "14px" }}
+          >{`${repo.laststars} stars today`}</Typography>
         </Box>
       </Box>
     </Box>
