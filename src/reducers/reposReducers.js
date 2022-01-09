@@ -1,6 +1,7 @@
 const SET_REPOS = "SET_REPOS";
 
 const defaultState = {
+  optionsToFetch: {section: '', language: '', since: '', spoken_language_code: ''},
   items: [],
   isFetching: true,
 };

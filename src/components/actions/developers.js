@@ -1,13 +1,23 @@
-// import axios from "axios";
-import { setRepos } from "../../reducers/reposReducers";
+import axios from "axios";
+import { setDevelopers } from '../../reducers/developersReducers';
 import githubTrends from 'github-trends-api';
 
-export const getRepos = (options) => {
+//! By github-trends-api
+export const getDevelopers = (options) => {
   return async(dispatch) => {
     const response = await githubTrends(options)
-    dispatch(setRepos(response))
+    dispatch(setDevelopers(response))
   }
 }
+
+//! By axios
+// export const getDevelopers = () => {
+//   return async(dispatch) => {
+//     const response = await axios.get('https://gh-trending-api.herokuapp.com/developers')
+//     console.log(response.data);
+//     dispatch(setDevelopers(response.data))
+//   }
+// }
 
 //! Methods
 // const options = {
@@ -23,12 +33,3 @@ export const getRepos = (options) => {
 // githubTrends({ section: 'developers', since: 'weekly' })
 //   .then(result => { console.log(result) })
 //   .catch(error => { console.log(error) })
-
-//! By axios
-// export const getRepos = () => {
-//   return async(dispatch) => {
-//     const response = await axios.get('https://gh-trending-api.herokuapp.com/repositories')
-//     console.log(response.data);
-//     dispatch(setRepos(response.data))
-//   }
-// }

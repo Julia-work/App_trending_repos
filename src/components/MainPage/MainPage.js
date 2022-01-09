@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// import { AppBar, Container, Grid, Typography, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 
 import { getRepos } from "../actions/repos";
+
 import TitleBox from "../TitleBox/TitleBox";
 import NavButtonsBox from "../NavButtonsBox/NavButtonsBox";
-
 import RepoCard from "./RepoCard/RepoCard";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,24 +34,23 @@ const MainPage = () => {
 
   const dispatch = useDispatch();
   const repos = useSelector((state) => state.repos.items);
+  const optionsToFetch = useSelector((state) => state.repos.optionsToFetch);
 
   useEffect(() => {
-    dispatch(getRepos());
+    dispatch(getRepos(optionsToFetch));
   }, []);
 
   return (
     <main>
-      <Box sx={{ flexGrow: 1 }}>
-        <TitleBox subTitle="See what the GitHub community is most excited about today." />
-        <Box className={classes.contentWrapper}>
-          <Box className={classes.content}>
-            <Box className={classes.header}>
-              <NavButtonsBox />
-            </Box>
-            {repos.map((repo) => (
-              <RepoCard key={repo.repourl} repo={repo} />
-            ))}
+      <TitleBox subTitle="See what the GitHub community is most excited about today." />
+      <Box className={classes.contentWrapper}>
+        <Box className={classes.content}>
+          <Box className={classes.header}>
+            <NavButtonsBox />
           </Box>
+          {repos.map((repo) => (
+            <RepoCard key={repo.repourl} repo={repo} />
+          ))}
         </Box>
       </Box>
     </main>

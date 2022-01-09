@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RepoCard = (props) => {
-  const repo = props.repo;
+const DeveloperCard = (props) => {
+  const developer = props.developer;
   const classes = useStyles();
 
   return (
@@ -49,18 +49,18 @@ const RepoCard = (props) => {
       <Box className={classes.flexContainer} sx={{flexWrap: 'nowrap', alignItems:"start"}}>
         <Typography variant="h2" >
           <Link
-            href={repo.repourl}
+            href={developer.url}
             underline="hover"
             className={classes.cardTitle}
             color="secondary.main"
-            title={repo.author}
+            title={developer.url}
           >
             {" "}
             <BookOutlinedIcon color="primary" sx={{ marginRight: 0.5 }}/>
-            {`${repo.author} / ${repo.reponame}`}
+            {`${developer.url} / ${developer.url}`}
           </Link>
         </Typography>
-        <ButtonSponsor />
+        {/* <ButtonSponsor />
         <ButtonStar />
       </Box>
       <Typography
@@ -140,9 +140,9 @@ const RepoCard = (props) => {
           <Typography
             sx={{ fontSize: 12 }}
           >{`${repo.laststars} stars today`}</Typography>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );
 };
-export default RepoCard;
+export default DeveloperCard;
