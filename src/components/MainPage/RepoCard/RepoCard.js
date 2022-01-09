@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   cardTitle: {
     fontSize: 20,
     fontWeight: 400,
-    marginBottom: 4,
+    paddingRight: 10,
   },
   flexContainer: {
     display: "flex",
@@ -43,44 +43,45 @@ const RepoCard = (props) => {
 
   return (
     <Box className={classes.cardContainer}>
-      <ButtonStar />
-      <Typography variant="h2" gutterBottom>
-        <Link
-          href={repo.repourl}
-          underline="hover"
-          className={classes.cardTitle}
-          color="secondary.main"
-          title={repo.author}
-        >
-          {" "}
-          <BookOutlinedIcon color="primary" />
-          {`${repo.author} / ${repo.reponame}`}
-        </Link>
-      </Typography>
+      <Box className={classes.flexContainer} sx={{flexWrap: 'nowrap', alignItems:"start"}}>
+        <Typography variant="h2" >
+          <Link
+            href={repo.repourl}
+            underline="hover"
+            className={classes.cardTitle}
+            color="secondary.main"
+            title={repo.author}
+          >
+            {" "}
+            <BookOutlinedIcon color="primary" sx={{ marginRight: 0.5 }}/>
+            {`${repo.author} / ${repo.reponame}`}
+          </Link>
+        </Typography>
+        <ButtonStar />
+      </Box>
       <Typography
         variant="body1"
         gutterBottom
-        component="div"
         fontSize={14}
-        marginRight={24}
+        margin="5px 0"
       >
         {repo.repodesc}
       </Typography>
 
-      <Box className={[classes.flexContainer, classes.cardFooter].join(" ")}>
-        <Box className={classes.flexContainer}>
-          <List className={classes.flexContainer}>
+      <Box className={[classes.flexContainer, classes.cardFooter].join(" ")} sx={{flexWrap: 'wrap'}}>
+        <Box className={classes.flexContainer} sx={{flexWrap: 'wrap'}}>
+          <List className={classes.flexContainer} >
             {repo.language ? (
-              <ListItem disablePadding sx={{ marginRight: 2 }}>
-                <ListItemText primary={repo.language} />
+              <ListItem disablePadding  sx={{ marginRight: 2 }}>
+                <Typography sx={{ fontSize: 12 }}>{repo.language}</Typography>
               </ListItem>
             ) : null}
 
             {repo.stars ? (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
-                <Link href={"#"} underline="none" sx={{ fontSize: "14px" }}>
+                <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
                   {" "}
-                  <StarOutlineIcon fontSize="small" sx={{ marginRight: 1 }} />
+                  <StarOutlineIcon fontSize="small" sx={{ marginRight: 0.5 }}/>
                   {repo.stars}
                 </Link>
               </ListItem>
@@ -88,11 +89,11 @@ const RepoCard = (props) => {
 
             {repo.forks ? (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
-                <Link href={"#"} underline="none" sx={{ fontSize: "14px" }}>
+                <Link href={"#"} underline="none" sx={{ fontSize: 12 }} >
                   {" "}
                   <AccountTreeOutlinedIcon
                     fontSize="small"
-                    sx={{ marginRight: 1 }}
+                    sx={{ marginRight: 0.5 }}
                   />
                   {repo.forks}
                 </Link>
@@ -101,7 +102,7 @@ const RepoCard = (props) => {
           </List>
 
           <Box className={classes.flexContainer}>
-            <Typography component="span" sx={{ marginRight: 1 }}>
+            <Typography component="span" sx={{ marginRight: 0.5, fontSize:12 }}>
               Built by
             </Typography>
             <List className={classes.flexContainer}>
@@ -130,10 +131,10 @@ const RepoCard = (props) => {
           </Box>
         </Box>
 
-        <Box className={classes.flexContainer}>
+        <Box className={classes.flexContainer} sx={{padding: "8px 0"}}>
           <StarOutlineIcon fontSize="small" />
           <Typography
-            sx={{ fontSize: "14px" }}
+            sx={{ fontSize: 12 }}
           >{`${repo.laststars} stars today`}</Typography>
         </Box>
       </Box>

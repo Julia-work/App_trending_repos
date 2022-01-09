@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { AppBar, Container, Grid, Typography, Button } from "@mui/material";
+// import { AppBar, Container, Grid, Typography, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 
@@ -13,16 +13,17 @@ import RepoCard from "./RepoCard/RepoCard";
 
 const useStyles = makeStyles((theme) => ({
   contentWrapper: {
+    maxWidth: 1046,
+    margin: "0 auto",
     marginTop: 40,
     padding: "0 16px",
-    margin: "0 auto",
   },
   content: {
     borderRadius: 6,
     border: theme.components.border.main,
   },
   header: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.backgroundLight,
     borderRadius: "6px 6px 0 0",
     borderBottom: theme.components.border.main,
     padding: 16,
@@ -43,8 +44,7 @@ const MainPage = () => {
     <main>
       <Box sx={{ flexGrow: 1 }}>
         <TitleBox subTitle="See what the GitHub community is most excited about today." />
-
-        <Box maxWidth="md" className={classes.contentWrapper}>
+        <Box className={classes.contentWrapper}>
           <Box className={classes.content}>
             <Box className={classes.header}>
               <NavButtonsBox />

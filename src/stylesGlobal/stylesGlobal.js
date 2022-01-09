@@ -4,58 +4,85 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
-const colorLightGrey = "#8b949e";
-const colorGrey = "#161b22";
-const colorDarkGrey = "#0D1117";
+const colorTextMain = "#8b949e";
+const colorTextSecondary = "#c9d1d9";
+
+const colorBackgroundDark = "#0D1117";
+const colorBackgroundLight = "#161b22";
+
 const colorBlue = "#1F6FEB";
+
 const colorBorder = "#30363d";
+const colorButtonHoverBorder = "#8b949e";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: colorLightGrey,
-      light: colorGrey,
-      dark: colorDarkGrey,
+      main: colorTextMain,
+      light: colorTextSecondary,
+      backgroundDark: colorBackgroundDark,
+      backgroundLight: colorBackgroundLight,
     },
     secondary: {
       main: colorBlue,
       light: colorBorder,
+      buttonHoverBorder: colorButtonHoverBorder,
     },
   },
+
   typography: {
     fontFamily: ["Roboto", "Arial", "sans-serif"].join(","),
   },
+
   components: {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: colorDarkGrey,
+          backgroundColor: colorBackgroundDark,
           margin: 0,
-          color: colorLightGrey,
+          color: colorTextMain,
         },
         a: {
           display: "flex",
         },
       },
     },
+
     border: {
       main: `1px solid ${colorBorder}`,
-      secondary: `1px solid ${colorBlue}`,
     },
+
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: "none",
           border: `1px solid ${colorBorder}`,
-          backgroundColor: colorGrey,
+          backgroundColor: colorBackgroundLight,
+          color: colorTextSecondary,
+          lineHeight: "20px",
+
+          "&:hover": {
+            backgroundColor: colorBackgroundLight,
+            border: `1px solid ${colorButtonHoverBorder}`,
+          }
         },
       },
     },
+    MuiList: {
+      styleOverrides: {
+        root: {
+         padding: 0,
+        },
+      },
+    },
+
     MuiLink: {
       styleOverrides: {
         root: {
           textTransform: "none",
-          // backgroundColor: "#1F6FEB",
+          "&:hover": {
+            color: colorBlue,
+          }
         },
       },
     },

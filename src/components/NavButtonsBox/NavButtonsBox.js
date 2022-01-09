@@ -8,20 +8,17 @@ const useStyles = makeStyles((theme) => ({
     "& a": {
       padding: "5px 16px",
       fontWeight: 500,
-      color: theme.palette.primary.main,
-      color: "#ffffff",
       lineHeight: "20px",
-      backgroundColor: theme.palette.secondary.main,
-      border: theme.components.border.secondary,
-     
-      "&:not(.active)": {
+
+      "&.active": {
+        backgroundColor: theme.palette.secondary.main,
         border: theme.components.border.main,
-        backgroundColor: theme.palette.primary.light,
-        color: theme.palette.primary.main,
+        borderColor: `${theme.palette.secondary.main} !important`,
+        color: '#f0f6fc',
 
         "&:hover": {
-          backgroundColor: "#1c1a1a",
-        },
+        backgroundColor: "#4c8cef",
+        }
       },
     },
   },

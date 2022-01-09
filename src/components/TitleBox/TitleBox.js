@@ -6,13 +6,14 @@ import { Box } from "@mui/system";
 
 const useStyles = makeStyles((theme) => ({
   titleBox: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.backgroundLight,
     padding: theme.spacing(5, 2),
     borderBottom: theme.components.border.main,
     "& h1": {
-      fontSize: 42,
+      fontSize: 32,
       fontWeight: 600,
       lineHeight: "48px",
+      color: theme.palette.primary.light,
     },
   },
 }));
