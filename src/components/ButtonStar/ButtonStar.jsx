@@ -1,24 +1,24 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
+// mui components
 import ButtonGroup from "@mui/material/ButtonGroup";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import Button from "@mui/material/Button";
+import { Typography } from "@mui/material";
+// my components
+import ButtonCustom from "../ButtonCustom";
+// icons
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles((theme) => ({
-
-}));
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const ButtonStar = () => {
-  const classes = useStyles();
 
   return (
     <ButtonGroup variant="contained" size="small" disableElevation >
-      <Button sx={{fontSize: 12, padding: "3px 12px" }}>
+
+      <Button>
         <StarOutlineIcon sx={{ fontSize: 16, marginRight: 1 }}/>
-        Star
-      </Button>
+        <Typography variant="span">Star</Typography>
+      </Button> 
+
       <Button size="small" sx={{fontSize: 12, padding: "3px 8px", minWidth: 28}} >
         <ArrowDropDownIcon sx={{ width: 16, height: 16}}/>
       </Button>

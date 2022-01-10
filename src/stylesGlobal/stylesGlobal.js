@@ -60,14 +60,14 @@ const theme = createTheme({
           "&:hover": {
             backgroundColor: colorBackgroundLight,
             border: `1px solid ${colorButtonHoverBorder}`,
-          }
+          },
         },
       },
     },
     MuiList: {
       styleOverrides: {
         root: {
-         padding: 0,
+          padding: 0,
         },
       },
     },
@@ -78,7 +78,7 @@ const theme = createTheme({
           textTransform: "none",
           "&:hover": {
             color: colorBlue,
-          }
+          },
         },
       },
     },

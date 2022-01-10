@@ -1,8 +1,7 @@
 import React from "react";
-
-import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Box } from "@mui/system";
+// mui components
+import { Typography,Box } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   titleBox: {
@@ -18,8 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TitleBox = (props) => {
-  const subTitle = props.subTitle;
+const TitleBox = ({subTitle}) => {
   const classes = useStyles();
 
   return (

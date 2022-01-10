@@ -9,16 +9,19 @@ const useStyles = makeStyles((theme) => ({
       padding: "5px 16px",
       fontWeight: 500,
       lineHeight: "20px",
-
+      "&:not(.active)": {
+        borderColor: `${theme.palette.secondary.light} !important`,
+        "&:hover": {
+          borderColor: `${theme.palette.secondary.buttonHoverBorder} !important`,
+        },
+      },
       "&.active": {
         backgroundColor: theme.palette.secondary.main,
-        border: theme.components.border.main,
         borderColor: `${theme.palette.secondary.main} !important`,
-        color: '#f0f6fc',
-
+        color: "#f0f6fc",
         "&:hover": {
-        backgroundColor: "#4c8cef",
-        }
+          backgroundColor: "#4c8cef",
+        },
       },
     },
   },
@@ -30,10 +33,14 @@ const NavButtonsBox = () => {
   return (
     <nav className={classes.navButtonsBox}>
       <ButtonGroup variant="contained">
-        <Button variant="contained" component={NavLink} to="/">
+        <Button
+          variant="contained"
+          component={NavLink}
+          to="/"
+        >
           Repositories
         </Button>
-        <Button variant="contained" component={NavLink} to="/developers" >
+        <Button variant="contained" component={NavLink} to="/developers">
           Developers
         </Button>
       </ButtonGroup>

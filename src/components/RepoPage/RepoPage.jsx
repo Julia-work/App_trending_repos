@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from "@mui/styles";
+// mui components
 import { Box } from "@mui/system";
-
-import { getDevelopers } from "../actions/developers";
-
-import TitleBox from "../TitleBox/TitleBox";
-import NavButtonsBox from "../NavButtonsBox/NavButtonsBox";
-// import RepoCard from "../MainPage/RepoCard/RepoCard";
-import DeveloperCard from "./DeveloperCard/DeveloperCard";
+// my components
+import TitleBox from "../TitleBox";
+import NavButtonsBox from "../NavButtonsBox";
+import RepoCard from "./RepoCard";
+// methods
+import { getRepos } from "../../redux/repos/actionRepos";
 
 const useStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -30,29 +30,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DeveloperPage = () => {
+const RepoPage = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-
-  const developers = useSelector((state) => state.developers.items);
-
-  const optionsToFetch = useSelector((state) => state.developers.optionsToFetch);
+  const repos = useSelector((store) => store.repos.items);
+  const optionsToFetch = useSelector((store) => store.repos.options);
 
   useEffect(() => {
-    dispatch(getDevelopers(optionsToFetch));
+    dispatch(getRepos(optionsToFetch));
   }, []);
 
   return (
     <main>
-      <TitleBox subTitle="These are the developers building the hot tools today." />
+      <TitleBox subTitle="See what the GitHub community is most excited about today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
           <Box className={classes.header}>
             <NavButtonsBox />
           </Box>
-          {developers.map((developer) => (
-            <DeveloperCard key={developer.url} developer={developer} />
+          {repos.map((repo) => (
+            <RepoCard key={repo.repourl} repo={repo} />
           ))}
         </Box>
       </Box>
@@ -60,4 +58,4 @@ const DeveloperPage = () => {
   );
 };
 
-export default DeveloperPage;
+export default RepoPage;

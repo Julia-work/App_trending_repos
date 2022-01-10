@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from "@mui/styles";
+// mui components
 import { Box } from "@mui/system";
+// my components
+import DeveloperCard from "./DeveloperCard";
+import NavButtonsBox from "../NavButtonsBox";
+import TitleBox from "../TitleBox";
+// methods
+import { getDevelopers } from "../../redux/developers/actionDevelopers";
 
-import { getRepos } from "../actions/repos";
-
-import TitleBox from "../TitleBox/TitleBox";
-import NavButtonsBox from "../NavButtonsBox/NavButtonsBox";
-import RepoCard from "./RepoCard/RepoCard";
 
 const useStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -29,32 +31,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainPage = () => {
+const DeveloperPage = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const repos = useSelector((state) => state.repos.items);
-  const optionsToFetch = useSelector((state) => state.repos.optionsToFetch);
+
+  const developers = useSelector((store) => store.developers.items);
+
+  const optionsToFetch = useSelector(
+    (store) => store.developers.options
+  );
 
   useEffect(() => {
-    dispatch(getRepos(optionsToFetch));
+    dispatch(getDevelopers(optionsToFetch));
   }, []);
 
   return (
     <main>
-      <TitleBox subTitle="See what the GitHub community is most excited about today." />
+      <TitleBox subTitle="These are the developers building the hot tools today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
           <Box className={classes.header}>
             <NavButtonsBox />
           </Box>
-          {repos.map((repo) => (
-            <RepoCard key={repo.repourl} repo={repo} />
-          ))}
+          {developers.map((developer, index) => {
+            return(
+              <DeveloperCard key={developer.repourl} developer={developer} count={index+1}/>
+            )}
+          )}
         </Box>
       </Box>
     </main>
   );
 };
 
-export default MainPage;
+export default DeveloperPage;

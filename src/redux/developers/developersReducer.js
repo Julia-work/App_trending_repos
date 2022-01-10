@@ -1,7 +1,7 @@
 const SET_DEVELOPERS = "SET_DEVELOPERS";
 
 const defaultState = {
-  optionsToFetch: {section: 'developers', language: '', since: 'monthly', spoken_language_code: ''},
+  options: {section: 'developers', language: '', since: 'monthly', spoken_language_code: ''},
   items: [],
   isFetching: true,
 };

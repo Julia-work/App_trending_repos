@@ -1,5 +1,7 @@
 import React from "react";
 
+import { makeStyles } from "@mui/styles";
+// mui components
 import {
   Box,
   Link,
@@ -7,16 +9,14 @@ import {
   Avatar,
   List,
   ListItem,
-  ListItemText,
 } from "@mui/material";
+// icons
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
 import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
-import { makeStyles } from "@mui/styles";
-
-import ButtonStar from "../../ButtonStar/ButtonStar";
-import ButtonSponsor from "../../ButtonSponsor/ButtonSponsor";
-
+// my components
+import ButtonStar from "../../ButtonStar";
+// import ButtonGroupCustom from "../../ButtonGroupCustom/ButtonGroupCustom";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -40,92 +40,108 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RepoCard = (props) => {
-  const repo = props.repo;
+const RepoCard = ({ repo }) => {
+  const {
+    author,
+    repourl,
+    reponame,
+    repodesc,
+    language,
+    stars,
+    forks,
+    builtby,
+    laststars,
+  } = repo;
+
   const classes = useStyles();
+  const {cardContainer,cardTitle,flexContainer,cardFooter}=classes
 
   return (
-    <Box className={classes.cardContainer}>
-      <Box className={classes.flexContainer} sx={{flexWrap: 'nowrap', alignItems:"start"}}>
-        <Typography variant="h2" >
+    <Box className={cardContainer}>
+      <Box
+        className={flexContainer}
+        sx={{ flexWrap: "nowrap", alignItems: "start" }}
+      >
+        <Typography variant="h2">
           <Link
-            href={repo.repourl}
+            href={repourl}
             underline="hover"
-            className={classes.cardTitle}
+            className={cardTitle}
             color="secondary.main"
-            title={repo.author}
+            title={author}
           >
             {" "}
-            <BookOutlinedIcon color="primary" sx={{ marginRight: 0.5 }}/>
-            {`${repo.author} / ${repo.reponame}`}
+            <BookOutlinedIcon color="primary" sx={{ marginRight: 0.5 }} />
+            {`${author} / ${reponame}`}
           </Link>
         </Typography>
-        <ButtonSponsor />
+       
         <ButtonStar />
       </Box>
-      <Typography
-        variant="body1"
-        gutterBottom
-        fontSize={14}
-        margin="5px 0"
-      >
-        {repo.repodesc}
+      <Typography variant="body1" gutterBottom fontSize={14} margin="5px 0">
+        {repodesc}
       </Typography>
 
-      <Box className={[classes.flexContainer, classes.cardFooter].join(" ")} sx={{flexWrap: 'wrap'}}>
-        <Box className={classes.flexContainer} sx={{flexWrap: 'wrap'}}>
-          <List className={classes.flexContainer} >
-            {repo.language ? (
-              <ListItem disablePadding  sx={{ marginRight: 2 }}>
-                <Typography sx={{ fontSize: 12 }}>{repo.language}</Typography>
+      <Box
+        className={[flexContainer, cardFooter].join(" ")}
+        sx={{ flexWrap: "wrap" }}
+      >
+        <Box className={flexContainer} sx={{ flexWrap: "wrap" }}>
+          <List className={classes.flexContainer}>
+            {language ? (
+              <ListItem disablePadding sx={{ marginRight: 2 }}>
+                <Typography sx={{ fontSize: 12 }}>{language}</Typography>
               </ListItem>
             ) : null}
 
-            {repo.stars ? (
+            {stars ? (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
                 <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
                   {" "}
-                  <StarOutlineIcon fontSize="small" sx={{ marginRight: 0.5 }}/>
-                  {repo.stars}
+                  <StarOutlineIcon fontSize="small" sx={{ marginRight: 0.5 }} />
+                  {stars}
                 </Link>
               </ListItem>
             ) : null}
 
-            {repo.forks ? (
+            {forks ? (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
-                <Link href={"#"} underline="none" sx={{ fontSize: 12 }} >
+                <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
                   {" "}
                   <AccountTreeOutlinedIcon
                     fontSize="small"
                     sx={{ marginRight: 0.5 }}
                   />
-                  {repo.forks}
+                  {forks}
                 </Link>
               </ListItem>
             ) : null}
           </List>
 
-          <Box className={classes.flexContainer}>
-            <Typography component="span" sx={{ marginRight: 0.5, fontSize:12 }}>
+          <Box className={flexContainer}>
+            <Typography
+              component="span"
+              sx={{ marginRight: 0.5, fontSize: 12 }}
+            >
               Built by
             </Typography>
-            <List className={classes.flexContainer}>
-              {repo.builtby.map((autor) => (
+            <List className={flexContainer}>
+              {builtby.map(({url,username,avatar}) => (
                 <ListItem
-                  key={autor.url}
+                  key={url}
                   disablePadding
                   sx={{ marginRight: 1 }}
                 >
                   <Link
-                    href={autor.url}
+                    href={url}
                     underline="none"
-                    title={autor.username}
+                    title={username}
                     target="_blank"
                   >
                     {" "}
                     <Avatar
-                      alt={autor.username}
-                      src={autor.avatar}
+                      alt={username}
+                      src={avatar}
                       sx={{ width: 24, height: 24 }}
                     />
                   </Link>
@@ -135,11 +151,11 @@ const RepoCard = (props) => {
           </Box>
         </Box>
 
-        <Box className={classes.flexContainer} sx={{padding: "8px 0"}}>
+        <Box className={flexContainer} sx={{ padding: "8px 0" }}>
           <StarOutlineIcon fontSize="small" />
           <Typography
             sx={{ fontSize: 12 }}
-          >{`${repo.laststars} stars today`}</Typography>
+          >{`${laststars} stars today`}</Typography>
         </Box>
       </Box>
     </Box>

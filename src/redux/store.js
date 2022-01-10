@@ -3,8 +3,8 @@ import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-import reposReducer from "./reposReducers";
-import developersReducer from "./developersReducers";
+import developersReducer from "./developers/developersReducer";
+import reposReducer from "./repos/reposReducer";
 
 const rootReducer = combineReducers({
   repos: reposReducer,
@@ -14,4 +14,4 @@ const rootReducer = combineReducers({
 export const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
-);
+)
