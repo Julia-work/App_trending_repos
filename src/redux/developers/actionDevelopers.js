@@ -1,10 +1,16 @@
-import githubTrends from 'github-trends-api';
+import githubTrends from "github-trends-api";
 
-import { setDevelopers } from './developersReducer';
+import { setDevelopers, setOption } from "./developersReducer";
 
 export const getDevelopers = (options) => {
-  return async(dispatch) => {
-    const response = await githubTrends(options)
-    dispatch(setDevelopers(response))
-  }
-}
+  return async (dispatch) => {
+    const response = await githubTrends(options);
+    dispatch(setDevelopers(response));
+  };
+};
+
+export const getOption = (option, value) => {
+  return (dispatch) => {
+    dispatch(setOption(option, value));
+  };
+};

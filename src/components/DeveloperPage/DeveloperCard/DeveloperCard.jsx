@@ -11,10 +11,10 @@ import {
 // icons
 import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import { makeStyles } from "@mui/styles";
 // my components
-import ButtonCustom from "../../ButtonCustom";
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -35,7 +35,8 @@ const DeveloperCard = ({ developer,count }) => {
   const classes = useStyles();
   const { cardContainer, cardTitle } = classes;
 
-  const [number, setCount] = useState(0);
+  const [text, setText] = useState(false);
+  const [color, setColor] = useState(false);
 
   return (
     <Box className={cardContainer}>
@@ -86,16 +87,20 @@ const DeveloperCard = ({ developer,count }) => {
               <Typography >{description}</Typography>
             </Box>
           </Box>
-          <Box sx={{ width: "165px", display: "flex", justifyContent: "space-between"}}>
-            <ButtonCustom >
-              <FavoriteBorderIcon sx={{ width: 16, height: 16,marginRight: 0.5, color: "#db61a2"}}/>
+          <Box sx={{ width: "170px", display: "flex", justifyContent: "space-between"}}>
+
+            <Button sx={{fontSize: 12, padding: "3px 12px" }} onClick={() => setColor(!color)}>
+              {color ? (
+                <FavoriteIcon sx={{ width: 16, height: 16,marginRight: 0.5, color: "#db61a2"}}/>
+                ) : 
+                <FavoriteBorderIcon sx={{ width: 16, height: 16,marginRight: 0.5, color: "#db61a2"}}/>
+              }
               <Typography variant="span">Sponsor</Typography>
-            </ButtonCustom> 
-            <ButtonCustom onClick={() => setCount(number + 1)}>
-              <Typography variant="span">{number}</Typography>
-            </ButtonCustom> 
-            <Button onClick={() => setCount(number + 1)}>{number}</Button>
-            <Typography variant="span">{number}</Typography>
+            </Button> 
+
+            <Button sx={{fontSize: 12, padding: "3px 12px", width: 72}} onClick={() => setText(!text)}>
+              <Typography variant="span">{text? "follow" : "unfollow"}</Typography>
+            </Button> 
 
           </Box>
         </Box>

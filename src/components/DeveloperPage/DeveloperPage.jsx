@@ -8,9 +8,11 @@ import { Box } from "@mui/system";
 import DeveloperCard from "./DeveloperCard";
 import NavButtonsBox from "../NavButtonsBox";
 import TitleBox from "../TitleBox";
+import SelectLabels from "../Select/Select.jsx";
+
 // methods
 import { getDevelopers } from "../../redux/developers/actionDevelopers";
-
+import { getOption as getOptionDev} from "../../redux/developers/actionDevelopers";
 
 const useStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "6px 6px 0 0",
     borderBottom: theme.components.border.main,
     padding: 16,
+    display: "flex"
   },
 }));
 
@@ -43,8 +46,9 @@ const DeveloperPage = () => {
   );
 
   useEffect(() => {
+    console.log('1');
     dispatch(getDevelopers(optionsToFetch));
-  }, []);
+  }, [optionsToFetch]);
 
   return (
     <main>
@@ -53,6 +57,7 @@ const DeveloperPage = () => {
         <Box className={classes.content}>
           <Box className={classes.header}>
             <NavButtonsBox />
+            <SelectLabels defaultValue = {optionsToFetch.since} getOption={getOptionDev}/>
           </Box>
           {developers.map((developer, index) => {
             return(

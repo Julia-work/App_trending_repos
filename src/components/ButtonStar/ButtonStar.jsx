@@ -1,21 +1,27 @@
 import * as React from "react";
+import { useState } from "react";
 // mui components
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
-// my components
-import ButtonCustom from "../ButtonCustom";
 // icons
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import StarIcon from '@mui/icons-material/Star';
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const ButtonStar = () => {
 
+  const [color, setColor] = useState(false);
+
   return (
     <ButtonGroup variant="contained" size="small" disableElevation >
 
-      <Button>
+      <Button onClick={() => setColor(!color)}>
+      {color ? (
+        <StarIcon sx={{ fontSize: 16, marginRight: 1, color: "#FFCF48" }}/>
+        ) : 
         <StarOutlineIcon sx={{ fontSize: 16, marginRight: 1 }}/>
+              }
         <Typography variant="span">Star</Typography>
       </Button> 
 

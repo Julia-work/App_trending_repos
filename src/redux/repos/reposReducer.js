@@ -1,7 +1,13 @@
 const SET_REPOS = "SET_REPOS";
+const SET_OPTION_REP = "SET_OPTION_REP";
 
 const defaultState = {
-  options: {section: '', language: '', since: '', spoken_language_code: ''},
+  options: {
+    section: "",
+    language: "",
+    since: "daily",
+    spoken_language_code: "",
+  },
   items: [],
   isFetching: true,
 };
@@ -11,11 +17,25 @@ export default function reposReducer(state = defaultState, action) {
     case SET_REPOS:
       return {
         ...state,
-        items: action.payload
-      }
+        items: action.payload,
+      };
+    case SET_OPTION_REP:
+      return {
+        ...state,
+        options: {
+          ...state.options,
+          [action.option]: action.value,
+        },
+      };
     default:
       return state;
   }
 }
 
-export const setRepos = (repos) => ({type: SET_REPOS, payload:repos})
+export const setRepos = (repos) => ({ type: SET_REPOS, payload: repos });
+
+export const setOption = (option, value) => ({
+  type: SET_OPTION_REP,
+  option,
+  value,
+});

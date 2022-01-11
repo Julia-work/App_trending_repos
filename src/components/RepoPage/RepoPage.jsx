@@ -7,9 +7,11 @@ import { Box } from "@mui/system";
 // my components
 import TitleBox from "../TitleBox";
 import NavButtonsBox from "../NavButtonsBox";
+import SelectLabels from "../Select/Select.jsx";
 import RepoCard from "./RepoCard";
 // methods
-import { getRepos } from "../../redux/repos/actionRepos";
+import { getRepos, getOption as getOptionRep } from "../../redux/repos/actionRepos";
+
 
 const useStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -27,6 +29,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "6px 6px 0 0",
     borderBottom: theme.components.border.main,
     padding: 16,
+    display: "flex",
+    justifyContent: 'space-between'
   },
 }));
 
@@ -39,7 +43,7 @@ const RepoPage = () => {
 
   useEffect(() => {
     dispatch(getRepos(optionsToFetch));
-  }, []);
+  }, [optionsToFetch]);
 
   return (
     <main>
@@ -48,6 +52,11 @@ const RepoPage = () => {
         <Box className={classes.content}>
           <Box className={classes.header}>
             <NavButtonsBox />
+            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+            <SelectLabels defaultValue = {optionsToFetch.since} getOption={getOptionRep}/>
+            <SelectLabels defaultValue = {optionsToFetch.since} getOption={getOptionRep}/>
+            <SelectLabels defaultValue = {optionsToFetch.since} getOption={getOptionRep}/>
+            </Box>
           </Box>
           {repos.map((repo) => (
             <RepoCard key={repo.repourl} repo={repo} />
