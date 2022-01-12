@@ -6,9 +6,10 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 // my components
 import DeveloperCard from "./DeveloperCard";
+import HeaderContent from "../HeaderContent";
 import NavButtonsBox from "../NavButtonsBox";
 import TitleBox from "../TitleBox";
-import SelectLabels from "../Select/Select.jsx";
+import SelectDate from "../SelectDate";
 
 // methods
 import { getDevelopers } from "../../redux/developers/actionDevelopers";
@@ -24,13 +25,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     borderRadius: 6,
     border: theme.components.border.main,
-  },
-  header: {
-    backgroundColor: theme.palette.primary.backgroundLight,
-    borderRadius: "6px 6px 0 0",
-    borderBottom: theme.components.border.main,
-    padding: 16,
-    display: "flex"
   },
 }));
 
@@ -55,10 +49,7 @@ const DeveloperPage = () => {
       <TitleBox subTitle="These are the developers building the hot tools today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <Box className={classes.header}>
-            <NavButtonsBox />
-            <SelectLabels defaultValue = {optionsToFetch.since} getOption={getOptionDev}/>
-          </Box>
+          <HeaderContent defaultValue = {optionsToFetch.since} getOption={getOptionDev}/>
           {developers.map((developer, index) => {
             return(
               <DeveloperCard key={developer.repourl} developer={developer} count={index+1}/>

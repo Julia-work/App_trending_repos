@@ -2,6 +2,7 @@ import { createTheme } from "@mui/material";
 
 const colorTextMain = "#8b949e";
 const colorTextSecondary = "#c9d1d9";
+const colorTextFilterHover = "#ffffff";
 
 const colorBackgroundDark = "#0D1117";
 const colorBackgroundLight = "#161b22";
@@ -71,13 +72,51 @@ const theme = createTheme({
         },
       },
     },
-
     MuiLink: {
       styleOverrides: {
         root: {
           textTransform: "none",
           "&:hover": {
             color: colorBlue,
+          },
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          minWidth: 45,
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          color: colorTextMain,
+          fontSize: 14,
+          fontWeight: 600,
+          "&:hover": {
+            "&:before": {
+              border: `none !important`,
+            },
+          },
+          "&:before": {
+            border: "none",
+          },
+          "&:after": {
+            border: "none",
+          },
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          "&.MuiSelect-icon": {
+            color: colorTextMain,
+            "&:hover": {
+              color: colorTextFilterHover,
+            },
           },
         },
       },

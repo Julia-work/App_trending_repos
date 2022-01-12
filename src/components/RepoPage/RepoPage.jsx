@@ -6,9 +6,8 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 // my components
 import TitleBox from "../TitleBox";
-import NavButtonsBox from "../NavButtonsBox";
-import SelectLabels from "../Select/Select.jsx";
 import RepoCard from "./RepoCard";
+import HeaderContent from "../HeaderContent";
 // methods
 import { getRepos, getOption as getOptionRep } from "../../redux/repos/actionRepos";
 
@@ -23,14 +22,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     borderRadius: 6,
     border: theme.components.border.main,
-  },
-  header: {
-    backgroundColor: theme.palette.primary.backgroundLight,
-    borderRadius: "6px 6px 0 0",
-    borderBottom: theme.components.border.main,
-    padding: 16,
-    display: "flex",
-    justifyContent: 'space-between'
   },
 }));
 
@@ -50,14 +41,7 @@ const RepoPage = () => {
       <TitleBox subTitle="See what the GitHub community is most excited about today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <Box className={classes.header}>
-            <NavButtonsBox />
-            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
-            <SelectLabels defaultValue = {optionsToFetch.since} getOption={getOptionRep}/>
-            <SelectLabels defaultValue = {optionsToFetch.since} getOption={getOptionRep}/>
-            <SelectLabels defaultValue = {optionsToFetch.since} getOption={getOptionRep}/>
-            </Box>
-          </Box>
+          <HeaderContent defaultValue = {optionsToFetch.since} getOption={getOptionRep}/>
           {repos.map((repo) => (
             <RepoCard key={repo.repourl} repo={repo} />
           ))}
