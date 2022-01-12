@@ -34,8 +34,10 @@ export default function reposReducer(state = defaultState, action) {
 
 export const setRepos = (repos) => ({ type: SET_REPOS, payload: repos });
 
-export const setOption = (option, value) => ({
-  type: SET_OPTION_REP,
-  option,
-  value,
-});
+export const setOption = (option, value) => {
+  return {
+    type: SET_OPTION_REP,
+    option,
+    value,
+  };
+};

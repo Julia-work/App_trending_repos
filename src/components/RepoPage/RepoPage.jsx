@@ -9,8 +9,7 @@ import TitleBox from "../TitleBox";
 import RepoCard from "./RepoCard";
 import HeaderContent from "../HeaderContent";
 // methods
-import { getRepos, getOption as getOptionRep } from "../../redux/repos/actionRepos";
-
+import { getRepos, getOptionToFetch } from "../../redux/repos/actionRepos";
 
 const useStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -41,7 +40,7 @@ const RepoPage = () => {
       <TitleBox subTitle="See what the GitHub community is most excited about today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <HeaderContent defaultValue = {optionsToFetch.since} getOption={getOptionRep}/>
+          <HeaderContent getOptionToFetch={getOptionToFetch} optionsToFetch={optionsToFetch} page="repo"/>
           {repos.map((repo) => (
             <RepoCard key={repo.repourl} repo={repo} />
           ))}

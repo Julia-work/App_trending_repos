@@ -9,7 +9,7 @@ export const getDevelopers = (options) => {
   };
 };
 
-export const getOption = (option, value) => {
+export const getOptionToFetch = (option, value) => {
   return (dispatch) => {
     dispatch(setOption(option, value));
   };

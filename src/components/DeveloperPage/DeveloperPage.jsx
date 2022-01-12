@@ -7,13 +7,10 @@ import { Box } from "@mui/system";
 // my components
 import DeveloperCard from "./DeveloperCard";
 import HeaderContent from "../HeaderContent";
-import NavButtonsBox from "../NavButtonsBox";
 import TitleBox from "../TitleBox";
-import SelectDate from "../SelectDate";
-
 // methods
 import { getDevelopers } from "../../redux/developers/actionDevelopers";
-import { getOption as getOptionDev} from "../../redux/developers/actionDevelopers";
+import { getOptionToFetch as getOptionDev} from "../../redux/developers/actionDevelopers";
 
 const useStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -40,7 +37,6 @@ const DeveloperPage = () => {
   );
 
   useEffect(() => {
-    console.log('1');
     dispatch(getDevelopers(optionsToFetch));
   }, [optionsToFetch]);
 
@@ -49,7 +45,8 @@ const DeveloperPage = () => {
       <TitleBox subTitle="These are the developers building the hot tools today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <HeaderContent defaultValue = {optionsToFetch.since} getOption={getOptionDev}/>
+          <HeaderContent getOptionToFetch={getOptionDev} optionsToFetch={optionsToFetch}/>
+
           {developers.map((developer, index) => {
             return(
               <DeveloperCard key={developer.repourl} developer={developer} count={index+1}/>

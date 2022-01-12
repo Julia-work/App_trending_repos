@@ -8,13 +8,6 @@ import { Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
-const option = "since";
-const values = {
-  daily: "Today",
-  weekly: "This week",
-  monthly: "This month",
-};
-
 const useStyles = makeStyles((theme) => ({
   inputWrapper:{
     display: "flex",
@@ -32,15 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SelectDate({ defaultValue, getOption }) {
+export default function SelectDate({ defaultValue, getOptionToFetch, values, label, option }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(defaultValue);
 
   useEffect(() => {
-    dispatch(getOption(option, value));
+    dispatch(getOptionToFetch(option, value));
   }, [value]);
 
   const handleChange = (event) => {
@@ -60,7 +52,7 @@ export default function SelectDate({ defaultValue, getOption }) {
         sx={{ color: "primary.main", border: "none", padding: "4px 0 5px 0" }}
         onClick={handleOpen}
       >
-        Date range:
+        {label} 
       </Button>
       <FormControl variant="standard" sx={{ m: 1 }}>
         <Select
@@ -70,9 +62,9 @@ export default function SelectDate({ defaultValue, getOption }) {
           onOpen={handleOpen}
           onChange={(event) => handleChange(event)}
         >
-          {Object.entries(values).map(([key, value]) => (
-            <MenuItem key={key} value={key}>
-              {value}
+          {values.map((item) => (
+            <MenuItem key={item.value} value={item.value}>
+              {item.label}
             </MenuItem>
           ))}
         </Select>
