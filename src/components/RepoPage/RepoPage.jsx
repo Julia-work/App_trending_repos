@@ -26,10 +26,11 @@ const useStyles = makeStyles((theme) => ({
 
 const RepoPage = () => {
   const classes = useStyles();
-
   const dispatch = useDispatch();
-  const repos = useSelector((store) => store.repos.items);
-  const optionsToFetch = useSelector((store) => store.repos.options);
+
+  const storeRepos = useSelector((store) => store.repos);
+  const repositories = storeRepos.items;
+  const optionsToFetch = storeRepos.options;
 
   useEffect(() => {
     dispatch(getRepos(optionsToFetch));
@@ -40,8 +41,8 @@ const RepoPage = () => {
       <TitleBox subTitle="See what the GitHub community is most excited about today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <HeaderContent getOptionToFetch={getOptionToFetch} optionsToFetch={optionsToFetch} page="repo"/>
-          {repos.map((repo) => (
+          <HeaderContent getOptionToFetch={getOptionToFetch} store={storeRepos}/>
+          {repositories.map((repo) => (
             <RepoCard key={repo.repourl} repo={repo} />
           ))}
         </Box>

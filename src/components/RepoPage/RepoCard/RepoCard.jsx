@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     fontWeight: 600,
     paddingRight: 10,
+    paddingBottom: 5
   },
   flexContainer: {
     display: "flex",
@@ -56,10 +57,10 @@ const RepoCard = ({ repo }) => {
   const {cardContainer,cardTitle,flexContainer,cardFooter}=classes
 
   return (
-    <Box className={cardContainer}>
+    <Box className={cardContainer} >
       <Box
         className={flexContainer}
-        sx={{ flexWrap: "nowrap", alignItems: "start" }}
+        sx={{ flexWrap: "wrap", alignItems: "start" }}
       >
         <Typography variant="h2">
           <Link

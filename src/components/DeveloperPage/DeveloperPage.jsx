@@ -30,11 +30,9 @@ const DeveloperPage = () => {
 
   const dispatch = useDispatch();
 
-  const developers = useSelector((store) => store.developers.items);
-
-  const optionsToFetch = useSelector(
-    (store) => store.developers.options
-  );
+  const storeDevelopers = useSelector((store) => store.developers);
+  const developers = storeDevelopers.items;
+  const optionsToFetch = storeDevelopers.options;
 
   useEffect(() => {
     dispatch(getDevelopers(optionsToFetch));
@@ -45,8 +43,7 @@ const DeveloperPage = () => {
       <TitleBox subTitle="These are the developers building the hot tools today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <HeaderContent getOptionToFetch={getOptionDev} optionsToFetch={optionsToFetch}/>
-
+          <HeaderContent getOptionToFetch={getOptionDev} store={storeDevelopers}/>
           {developers.map((developer, index) => {
             return(
               <DeveloperCard key={developer.repourl} developer={developer} count={index+1}/>

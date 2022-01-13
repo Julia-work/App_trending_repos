@@ -1,0 +1,4 @@
+const REPO_PAGE_PATH_NAME = "/";
+const DEVELOPERS_PAGE_PATH_NAME = "/developers";
+
+export { REPO_PAGE_PATH_NAME, DEVELOPERS_PAGE_PATH_NAME };

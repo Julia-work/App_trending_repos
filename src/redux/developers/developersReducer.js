@@ -2,7 +2,7 @@ const SET_DEVELOPERS = "SET_DEVELOPERS";
 const SET_OPTION_DEV = "SET_OPTION_DEV";
 
 const defaultState = {
-  options: {section: 'developers', language: '', since: 'monthly', spoken_language_code: ''},
+  options: {section: 'developers', language: 'Any', since: 'monthly', spoken_language_code: 'Any'},
   items: [],
   isFetching: true,
 };
