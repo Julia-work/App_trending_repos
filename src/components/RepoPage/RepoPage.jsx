@@ -8,6 +8,7 @@ import { Box } from "@mui/system";
 import TitleBox from "../TitleBox";
 import RepoCard from "./RepoCard";
 import HeaderContent from "../HeaderContent";
+import Spinner from "../Spinner";
 // methods
 import { getRepos, getOptionToFetch } from "../../redux/repos/actionRepos";
 
@@ -31,6 +32,8 @@ const RepoPage = () => {
   const storeRepos = useSelector((store) => store.repos);
   const repositories = storeRepos.items;
   const optionsToFetch = storeRepos.options;
+  const isFetching = useSelector((store) => store.repos.isFetching)
+
 
   useEffect(() => {
     dispatch(getRepos(optionsToFetch));
@@ -42,9 +45,16 @@ const RepoPage = () => {
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
           <HeaderContent getOptionToFetch={getOptionToFetch} store={storeRepos}/>
-          {repositories.map((repo) => (
-            <RepoCard key={repo.repourl} repo={repo} />
-          ))}
+          {
+            isFetching === false
+            ? 
+            repositories.map((repo) => (
+              <RepoCard key={repo.repourl} repo={repo} />
+            ))
+            :
+            <Spinner/>
+          }
+
         </Box>
       </Box>
     </main>

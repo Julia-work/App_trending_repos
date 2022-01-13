@@ -8,6 +8,7 @@ import { Box } from "@mui/system";
 import DeveloperCard from "./DeveloperCard";
 import HeaderContent from "../HeaderContent";
 import TitleBox from "../TitleBox";
+import Spinner from "../Spinner";
 // methods
 import { getDevelopers } from "../../redux/developers/actionDevelopers";
 import { getOptionToFetch as getOptionDev} from "../../redux/developers/actionDevelopers";
@@ -33,6 +34,8 @@ const DeveloperPage = () => {
   const storeDevelopers = useSelector((store) => store.developers);
   const developers = storeDevelopers.items;
   const optionsToFetch = storeDevelopers.options;
+  const isFetching = useSelector((store) => store.developers.isFetching)
+
 
   useEffect(() => {
     dispatch(getDevelopers(optionsToFetch));
@@ -44,11 +47,15 @@ const DeveloperPage = () => {
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
           <HeaderContent getOptionToFetch={getOptionDev} store={storeDevelopers}/>
-          {developers.map((developer, index) => {
-            return(
-              <DeveloperCard key={developer.repourl} developer={developer} count={index+1}/>
-            )}
-          )}
+          {
+            isFetching === false
+            ? 
+            developers.map((developer, index) => (
+                <DeveloperCard key={developer.repourl} developer={developer} count={index+1}/>
+              ))
+            :
+            <Spinner/>
+          }
         </Box>
       </Box>
     </main>

@@ -1,9 +1,11 @@
 import githubTrends from "github-trends-api";
 
-import { setDevelopers, setOption } from "./developersReducer";
+import { setDevelopers, setOption, setIsFetching } from "./developersReducer";
 
 export const getDevelopers = (options) => {
   return async (dispatch) => {
+    dispatch(setIsFetching(true));
+
     if(options.language === "Any") {
       options.language = ""
     }
