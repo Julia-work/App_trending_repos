@@ -1,18 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { makeStyles } from "@mui/styles";
-// mui components
 import { Box } from "@mui/system";
-// my components
 import TitleBox from "../TitleBox";
 import RepoCard from "./RepoCard";
 import HeaderContent from "../HeaderContent";
 import Spinner from "../Spinner";
-// methods
 import { getRepos, getOptionToFetch } from "../../redux/repos/actionRepos";
 
-const useStyles = makeStyles((theme) => ({
+const getStyles = makeStyles((theme) => ({
   contentWrapper: {
     maxWidth: 1046,
     margin: "0 auto",
@@ -26,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RepoPage = () => {
-  const classes = useStyles();
+  const classes = getStyles();
   const dispatch = useDispatch();
 
   const storeRepos = useSelector((store) => store.repos);
@@ -54,7 +50,6 @@ const RepoPage = () => {
             :
             <Spinner/>
           }
-
         </Box>
       </Box>
     </main>

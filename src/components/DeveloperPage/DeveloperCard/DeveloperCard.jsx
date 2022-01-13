@@ -16,7 +16,7 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import { makeStyles } from "@mui/styles";
 // my components
 
-const useStyles = makeStyles((theme) => ({
+const getStyles = makeStyles((theme) => ({
   cardContainer: {
     padding: 16,
     borderBottom: theme.components.border.main,
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const DeveloperCard = ({ developer,count }) => {
   const { author, username, avatar, url, reponame, repourl, description } =
     developer;
-  const classes = useStyles();
+  const classes = getStyles();
   const { cardContainer, cardTitle } = classes;
 
   const [text, setText] = useState(false);
@@ -84,7 +84,7 @@ const DeveloperCard = ({ developer,count }) => {
                   {reponame}
                 </Link>
               </Typography>
-              <Typography >{description}</Typography>
+              <Typography >{description ? "description" : "no description"}</Typography>
             </Box>
           </Box>
           <Box sx={{ width: "170px", display: "flex", justifyContent: "space-between"}}>
@@ -99,7 +99,7 @@ const DeveloperCard = ({ developer,count }) => {
             </Button> 
 
             <Button sx={{fontSize: 12, padding: "3px 12px", width: 72}} onClick={() => setText(!text)}>
-              <Typography variant="span">{text? "follow" : "unfollow"}</Typography>
+              <Typography variant="span">{text? "unfollow" : "follow"}</Typography>
             </Button> 
 
           </Box>

@@ -17,7 +17,7 @@ import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
 // my components
 import ButtonStar from "../../ButtonStar";
 
-const useStyles = makeStyles((theme) => ({
+const getStyles = makeStyles((theme) => ({
   cardContainer: {
     padding: 16,
     borderBottom: theme.components.border.main,
@@ -53,7 +53,7 @@ const RepoCard = ({ repo }) => {
     laststars,
   } = repo;
 
-  const classes = useStyles();
+  const classes = getStyles();
   const {cardContainer,cardTitle,flexContainer,cardFooter}=classes
 
   return (

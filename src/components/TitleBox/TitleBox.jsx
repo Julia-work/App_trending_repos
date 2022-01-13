@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 // mui components
 import { Typography,Box } from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
+const getStyles = makeStyles((theme) => ({
   titleBox: {
     backgroundColor: theme.palette.primary.backgroundLight,
     padding: theme.spacing(5, 2),
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TitleBox = ({subTitle}) => {
-  const classes = useStyles();
+  const classes = getStyles();
 
   return (
     <Box className={classes.titleBox}>

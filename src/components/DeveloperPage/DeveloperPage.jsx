@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+// import githubTrends from "github-trends-api";
 import { makeStyles } from "@mui/styles";
 // mui components
 import { Box } from "@mui/system";
@@ -13,7 +13,7 @@ import Spinner from "../Spinner";
 import { getDevelopers } from "../../redux/developers/actionDevelopers";
 import { getOptionToFetch as getOptionDev} from "../../redux/developers/actionDevelopers";
 
-const useStyles = makeStyles((theme) => ({
+const getStyles = makeStyles((theme) => ({
   contentWrapper: {
     maxWidth: 1046,
     margin: "0 auto",
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DeveloperPage = () => {
-  const classes = useStyles();
+  const classes = getStyles();
 
   const dispatch = useDispatch();
 
@@ -40,6 +40,12 @@ const DeveloperPage = () => {
   useEffect(() => {
     dispatch(getDevelopers(optionsToFetch));
   }, [optionsToFetch]);
+
+  // useEffect(() => {
+  //   githubTrends({ section: 'developers', since: 'weekly' })
+  //     .then(result => { console.log(result) })
+  //     .catch(error => { console.log('ERRRORRR',error) })
+  // }, []);
 
   return (
     <main>

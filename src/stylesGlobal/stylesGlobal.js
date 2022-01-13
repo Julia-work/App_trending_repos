@@ -124,10 +124,10 @@ const theme = createTheme({
     MuiCircularProgress: {
       styleOverrides: {
         root: {
-          color:colorBlue,
+          color: colorBlue,
         },
       },
-    }
+    },
   },
 });
 export default theme;

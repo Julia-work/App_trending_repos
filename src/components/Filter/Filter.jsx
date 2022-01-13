@@ -8,7 +8,7 @@ import { Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
-const useStyles = makeStyles((theme) => ({
+const getStyles = makeStyles((theme) => ({
   inputWrapper:{
     display: "flex",
     justifyContent: "space-between",
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SelectDate({ defaultValue, getOptionToFetch, values, label, option }) {
-  const classes = useStyles();
+  const classes = getStyles();
   const dispatch = useDispatch();
   
   const [open, setOpen] = useState(false);
