@@ -17,6 +17,7 @@ const App = () => {
         <Routes>
           <Route path={REPO_PAGE_PATH_NAME} element={<RepoPage />} />
           <Route path={DEVELOPERS_PAGE_PATH_NAME} element={<DeveloperPage />} />
+          {/* <Route path={ERROR_PAGE_PATH_NAME} element={<ErrorPage/>} /> */}
           <Route path="*" element={<Navigate to={REPO_PAGE_PATH_NAME} />} />
         </Routes>
       </BrowserRouter>

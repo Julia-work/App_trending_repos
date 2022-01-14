@@ -6,7 +6,9 @@ import TitleBox from "../TitleBox";
 import RepoCard from "./RepoCard";
 import HeaderContent from "../HeaderContent";
 import Spinner from "../Spinner";
+import ErrorMassage from "../ErrorMassage";
 import { getRepos, getOptionToFetch } from "../../redux/repos/actionRepos";
+import { ERROR_PAGE_PATH_NAME } from "../../constants";
 
 const getStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -23,13 +25,11 @@ const getStyles = makeStyles((theme) => ({
 
 const RepoPage = () => {
   const classes = getStyles();
+  const {contentWrapper,content}=classes;
   const dispatch = useDispatch();
 
   const storeRepos = useSelector((store) => store.repos);
-  const repositories = storeRepos.items;
-  const optionsToFetch = storeRepos.options;
-  const isFetching = useSelector((store) => store.repos.isFetching)
-
+  const {items:repositories,options:optionsToFetch,isFetching,isFetchError} = storeRepos
 
   useEffect(() => {
     dispatch(getRepos(optionsToFetch));
@@ -38,17 +38,21 @@ const RepoPage = () => {
   return (
     <main>
       <TitleBox subTitle="See what the GitHub community is most excited about today." />
-      <Box className={classes.contentWrapper}>
-        <Box className={classes.content}>
+      <Box className={contentWrapper}>
+        <Box className={content}>
           <HeaderContent getOptionToFetch={getOptionToFetch} store={storeRepos}/>
-          {
-            isFetching === false
+          { isFetchError === true 
+            ? <ErrorMassage/>
+            :
+            isFetching === false && repositories.length >= 1
             ? 
             repositories.map((repo) => (
               <RepoCard key={repo.repourl} repo={repo} />
             ))
             :
-            <Spinner/>
+            isFetching === false && repositories.length < 1 
+            ? <ErrorMassage/>
+            : <Spinner/>
           }
         </Box>
       </Box>

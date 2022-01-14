@@ -1,19 +1,32 @@
 import githubTrends from "github-trends-api";
 
-import { setDevelopers, setOption, setIsFetching } from "./developersReducer";
+import {
+  setDevelopers,
+  setOption,
+  setIsFetching,
+  setIsFetchError,
+} from "./developersReducer";
 
 export const getDevelopers = (options) => {
   return async (dispatch) => {
-    dispatch(setIsFetching(true));
+    try {
+      dispatch(setIsFetching(true));
+      dispatch(setIsFetchError(false));
 
-    if(options.language === "Any") {
-      options.language = ""
+      if (options.language === "Any") {
+        options.language = "";
+      }
+      if (options.spoken_language_code === "Any") {
+        options.spoken_language_code = "";
+      }
+
+      const response = await githubTrends(options);
+      dispatch(setDevelopers(response));
+    } catch (e) {
+      console.log(e);
+      dispatch(setIsFetchError(true));
+      dispatch(setIsFetching(false));
     }
-    if(options.spoken_language_code === "Any") {
-      options.spoken_language_code = ""
-    }
-    const response = await githubTrends(options);
-    dispatch(setDevelopers(response));
   };
 };
 

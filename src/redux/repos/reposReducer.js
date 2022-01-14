@@ -1,5 +1,6 @@
 const SET_REPOS = "SET_REPOS";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
+const SET_FETCH_ERROR = "SET_FETCH_ERROR";
 const SET_OPTION_REP = "SET_OPTION_REP";
 
 const defaultState = {
@@ -11,6 +12,7 @@ const defaultState = {
   },
   items: [],
   isFetching: true,
+  isFetchError: false,
 };
 
 export default function reposReducer(state = defaultState, action) {
@@ -20,11 +22,17 @@ export default function reposReducer(state = defaultState, action) {
         ...state,
         items: action.payload,
         isFetching: false,
+        isFetchError: false
       };
     case SET_IS_FETCHING:
       return {
         ...state,
         isFetching: action.payload,
+      };
+    case SET_FETCH_ERROR:
+      return {
+        ...state,
+        isFetchError: action.payload,
       };
     case SET_OPTION_REP:
       return {
@@ -40,8 +48,14 @@ export default function reposReducer(state = defaultState, action) {
 }
 
 export const setRepos = (repos) => ({ type: SET_REPOS, payload: repos });
-export const setIsFetching = (boolean) => ({ type: SET_IS_FETCHING, payload: boolean });
-
+export const setIsFetching = (boolean) => ({
+  type: SET_IS_FETCHING,
+  payload: boolean,
+});
+export const setIsFetchError = (boolean) => ({
+  type: SET_FETCH_ERROR,
+  payload: boolean,
+});
 export const setOption = (option, value) => {
   return {
     type: SET_OPTION_REP,
