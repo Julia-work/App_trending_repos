@@ -1,2 +1,2 @@
-import TitleBox from "./TitleBox.jsx";
+import TitleBox from "./TitleBox";
 export default TitleBox;

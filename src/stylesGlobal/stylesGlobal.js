@@ -82,6 +82,7 @@ const theme = createTheme({
         },
       },
     },
+    // for filters
     MuiFormControl: {
       styleOverrides: {
         root: {
@@ -106,6 +107,27 @@ const theme = createTheme({
           "&:after": {
             border: "none",
           },
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: colorBackgroundLight,
+          color:"#ffffff",
+          fontSize: 12,
+          border: `1px solid ${colorBorder}`
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          color:"#ffffff",
+          fontSize: 12,
+          "&:hover": {
+            backgroundColor: colorBlue,
+          }
         },
       },
     },

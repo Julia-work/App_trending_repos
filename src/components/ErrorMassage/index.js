@@ -1,2 +1,2 @@
-import ErrorMassage from "./ErrorMassage.jsx";
+import ErrorMassage from "./ErrorMassage";
 export default ErrorMassage;

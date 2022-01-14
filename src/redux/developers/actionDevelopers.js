@@ -23,7 +23,6 @@ export const getDevelopers = (options) => {
       const response = await githubTrends(options);
       dispatch(setDevelopers(response));
     } catch (e) {
-      console.log(e);
       dispatch(setIsFetchError(true));
       dispatch(setIsFetching(false));
     }

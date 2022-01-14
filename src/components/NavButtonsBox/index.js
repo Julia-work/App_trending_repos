@@ -1,2 +1,2 @@
-import NavButtonsBox from "./NavButtonsBox.jsx";
+import NavButtonsBox from "./NavButtonsBox";
 export default NavButtonsBox;

@@ -4,10 +4,13 @@ import { ThemeProvider } from "@mui/material";
 import theme from "../../stylesGlobal/stylesGlobal";
 import { CssBaseline } from "@mui/material";
 // my components
-import RepoPage from "../RepoPage";
-import DeveloperPage from "../DeveloperPage";
+import RepoPage from "../Pages/RepoPage";
+import DeveloperPage from "../Pages/DeveloperPage";
 // constants
-import { REPO_PAGE_PATH_NAME, DEVELOPERS_PAGE_PATH_NAME } from "../../constants";
+import {
+  REPO_PAGE_PATH_NAME,
+  DEVELOPERS_PAGE_PATH_NAME,
+} from "../../constants";
 
 const App = () => {
   return (

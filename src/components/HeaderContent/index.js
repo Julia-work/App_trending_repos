@@ -1,2 +1,2 @@
-import HeaderContent from "./HeaderContent.jsx";
+import HeaderContent from "./HeaderContent";
 export default HeaderContent;

@@ -1,2 +1,2 @@
-import ButtonStar from "./ButtonStar.jsx";
+import ButtonStar from "./ButtonStar";
 export default ButtonStar;

@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Button, ButtonGroup } from "@mui/material";
 // constants
-import { REPO_PAGE_PATH_NAME, DEVELOPERS_PAGE_PATH_NAME } from "../../constants";
+import {
+  REPO_PAGE_PATH_NAME,
+  DEVELOPERS_PAGE_PATH_NAME,
+} from "../../constants";
 
 const getStyles = makeStyles((theme) => ({
   navButtonsBox: {
@@ -39,11 +42,13 @@ const NavButtonsBox = () => {
         <Button
           variant="contained"
           component={NavLink}
-          to={REPO_PAGE_PATH_NAME}
-        >
+          to={REPO_PAGE_PATH_NAME}>
           Repositories
         </Button>
-        <Button variant="contained" component={NavLink} to={DEVELOPERS_PAGE_PATH_NAME}>
+        <Button
+          variant="contained"
+          component={NavLink}
+          to={DEVELOPERS_PAGE_PATH_NAME}>
           Developers
         </Button>
       </ButtonGroup>

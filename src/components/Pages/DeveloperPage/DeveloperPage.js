@@ -7,16 +7,16 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 // my components
 import DeveloperCard from "./DeveloperCard";
-import HeaderContent from "../HeaderContent";
-import TitleBox from "../TitleBox";
-import Spinner from "../Spinner";
-import ErrorMassage from "../ErrorMassage";
+import HeaderContent from "../../HeaderContent";
+import TitleBox from "../../TitleBox";
+import Spinner from "../../Spinner";
+import ErrorMassage from "../../ErrorMassage";
 
-import { ERROR_PAGE_PATH_NAME } from "../../constants";
+import { ERROR_PAGE_PATH_NAME } from "../../../constants";
 
 // methods
-import { getDevelopers } from "../../redux/developers/actionDevelopers";
-import { getOptionToFetch as getOptionDev} from "../../redux/developers/actionDevelopers";
+import { getDevelopers } from "../../../redux/developers/actionDevelopers";
+import { getOptionToFetch as getOptionDev } from "../../../redux/developers/actionDevelopers";
 
 const getStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -37,7 +37,12 @@ const DeveloperPage = () => {
   const dispatch = useDispatch();
 
   const storeDevelopers = useSelector((store) => store.developers);
-  const {items:developers,options:optionsToFetch,isFetching,isFetchError} = storeDevelopers
+  const {
+    items: developers,
+    options: optionsToFetch,
+    isFetching,
+    isFetchError,
+  } = storeDevelopers;
 
   useEffect(() => {
     dispatch(getDevelopers(optionsToFetch));
@@ -48,19 +53,25 @@ const DeveloperPage = () => {
       <TitleBox subTitle="These are the developers building the hot tools today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <HeaderContent getOptionToFetch={getOptionDev} store={storeDevelopers}/>
-          {
-            isFetchError === true 
-            ? <ErrorMassage/>
-            : isFetching === false && developers.length
-            ?
+          <HeaderContent
+            getOptionToFetch={getOptionDev}
+            store={storeDevelopers}
+          />
+          {isFetchError === true ? (
+            <ErrorMassage />
+          ) : isFetching === false && developers.length ? (
             developers.map((developer, index) => (
-              <DeveloperCard key={developer.repourl} developer={developer} count={index+1}/>
+              <DeveloperCard
+                key={developer.repourl}
+                developer={developer}
+                count={index + 1}
+              />
             ))
-            : isFetching === false && developers.length < 1 
-            ? <ErrorMassage/>
-            : <Spinner/>
-          }
+          ) : isFetching === false && developers.length < 1 ? (
+            <ErrorMassage />
+          ) : (
+            <Spinner />
+          )}
         </Box>
       </Box>
     </main>

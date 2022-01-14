@@ -25,7 +25,7 @@ const getStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SelectDate({ defaultValue, getOptionToFetch, values, label, option }) {
+export default function Filter({ defaultValue, getOptionToFetch, values, label, option }) {
   const classes = getStyles();
   const dispatch = useDispatch();
   
@@ -55,6 +55,7 @@ export default function SelectDate({ defaultValue, getOptionToFetch, values, lab
       >
         {label} 
       </Button>
+
       <FormControl variant="standard" sx={{ m: 1 }}>
         <Select
           value={value}
@@ -64,7 +65,7 @@ export default function SelectDate({ defaultValue, getOptionToFetch, values, lab
           onChange={(event) => handleChange(event)}
         >
           {values.map((item) => (
-            <MenuItem key={item.value} value={item.value}>
+            <MenuItem key={item.value} value={item.value} >
               {item.label}
             </MenuItem>
           ))}
