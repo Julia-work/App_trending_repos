@@ -1,12 +1,13 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { makeStyles } from "@mui/styles";
 
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Button, Box } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
 
 const getStyles = makeStyles((theme) => ({
   inputWrapper:{
@@ -14,21 +15,19 @@ const getStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     "&:hover *": {
-      color: "#ffffff",
+      color: theme.palette.primary.light,
     },
   },
   buttonOpenInput: {
     padding: 0,
-    "&:hover": {
       border: `none !important`,
-    },
   },
 }));
 
 export default function Filter({ defaultValue, getOptionToFetch, values, label, option }) {
   const classes = getStyles();
   const dispatch = useDispatch();
-  
+
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(defaultValue);
 
@@ -53,7 +52,7 @@ export default function Filter({ defaultValue, getOptionToFetch, values, label, 
         sx={{ color: "primary.main", border: "none", padding: "4px 0 5px 0" }}
         onClick={handleOpen}
       >
-        {label} 
+        {label}
       </Button>
 
       <FormControl variant="standard" sx={{ m: 1 }}>

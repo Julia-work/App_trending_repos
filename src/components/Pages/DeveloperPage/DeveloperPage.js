@@ -33,7 +33,7 @@ const getStyles = makeStyles((theme) => ({
 
 const DeveloperPage = () => {
   const classes = getStyles();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const storeDevelopers = useSelector((store) => store.developers);

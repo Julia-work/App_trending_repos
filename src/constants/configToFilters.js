@@ -1,5 +1,5 @@
-import { SPOKEN_LANGUAGE } from "./spokenLanguage.js";
-import { LANGUAGE } from "./language.js";
+import { SPOKEN_LANGUAGE } from "./spokenLanguageList.js";
+import { LANGUAGE } from "./languageList.js";
 
 const ALL_OPTION_FILTERS = "Any";
 

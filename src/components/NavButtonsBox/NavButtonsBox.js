@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Button, ButtonGroup } from "@mui/material";
-// constants
 import {
   REPO_PAGE_PATH_NAME,
   DEVELOPERS_PAGE_PATH_NAME,
@@ -16,9 +15,9 @@ const getStyles = makeStyles((theme) => ({
       fontWeight: 500,
       lineHeight: "20px",
       "&:not(.active)": {
-        borderColor: `${theme.palette.secondary.light} !important`,
+        borderColor: theme.palette.secondary.colorBorder,
         "&:hover": {
-          borderColor: `${theme.palette.secondary.buttonHoverBorder} !important`,
+          borderColor: theme.palette.secondary.buttonHoverBorder,
         },
       },
       "&.active": {
@@ -37,8 +36,8 @@ const NavButtonsBox = () => {
   const classes = getStyles();
 
   return (
-    <nav className={classes.navButtonsBox}>
-      <ButtonGroup variant="contained">
+    <nav >
+      <ButtonGroup variant="contained" className={classes.navButtonsBox}>
         <Button
           variant="contained"
           component={NavLink}

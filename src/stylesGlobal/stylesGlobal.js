@@ -2,7 +2,6 @@ import { createTheme } from "@mui/material";
 
 const colorTextMain = "#8b949e";
 const colorTextSecondary = "#c9d1d9";
-const colorTextFilterHover = "#ffffff";
 
 const colorBackgroundDark = "#0D1117";
 const colorBackgroundLight = "#161b22";
@@ -22,7 +21,7 @@ const theme = createTheme({
     },
     secondary: {
       main: colorBlue,
-      light: colorBorder,
+      colorBorder: colorBorder,
       buttonHoverBorder: colorButtonHoverBorder,
     },
   },
@@ -114,7 +113,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: colorBackgroundLight,
-          color:"#ffffff",
+          color: colorTextSecondary,
           fontSize: 12,
           border: `1px solid ${colorBorder}`
         },
@@ -123,7 +122,7 @@ const theme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          color:"#ffffff",
+          color: colorTextSecondary,
           fontSize: 12,
           "&:hover": {
             backgroundColor: colorBlue,
@@ -137,7 +136,7 @@ const theme = createTheme({
           "&.MuiSelect-icon": {
             color: colorTextMain,
             "&:hover": {
-              color: colorTextFilterHover,
+              color: colorTextSecondary,
             },
           },
         },

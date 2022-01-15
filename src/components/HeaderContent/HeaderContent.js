@@ -7,6 +7,7 @@ import Filter from "../Filter";
 import SearchFilter from "../SearchFilter";
 import {
   REPO_PAGE_PATH_NAME,
+  DEVELOPERS_PAGE_PATH_NAME,
   DATE_FILTER,
   LANGUAGE_FILTER,
   SPOKEN_LANGUAGE_FILTER,
@@ -30,11 +31,13 @@ const HeaderContent = ({ getOptionToFetch, store }) => {
   const location = useLocation();
   const pathName = location.pathname;
   const isRepo = pathName === REPO_PAGE_PATH_NAME;
+  const isDevops = pathName === DEVELOPERS_PAGE_PATH_NAME;
 
+  // isRepo
   const { options } = store;
-  const defaultValueDate = options.since;
-  const defaultValueLanguage = options.language;
-  const defaultValueSpokenLanguage = options.spoken_language_code;
+  const currentValueDate = options.since;
+  const currentValueLanguage = options.language;
+  const currentValueSpokenLanguage = options.spoken_language_code;
 
   return (
     <Box className={classes.header}>
@@ -48,7 +51,7 @@ const HeaderContent = ({ getOptionToFetch, store }) => {
         {isRepo && (
           <Filter
             option={SPOKEN_LANGUAGE_FILTER.option}
-            defaultValue={defaultValueSpokenLanguage}
+            defaultValue={currentValueSpokenLanguage}
             getOptionToFetch={getOptionToFetch}
             values={SPOKEN_LANGUAGE_FILTER.values}
             label={SPOKEN_LANGUAGE_FILTER.label}
@@ -56,23 +59,21 @@ const HeaderContent = ({ getOptionToFetch, store }) => {
         )}
         <Filter
           option={LANGUAGE_FILTER.option}
-          defaultValue={defaultValueLanguage}
+          defaultValue={currentValueLanguage}
           getOptionToFetch={getOptionToFetch}
           values={LANGUAGE_FILTER.values}
           label={LANGUAGE_FILTER.label}
         />
         <Filter
           option={DATE_FILTER.option}
-          defaultValue={defaultValueDate}
+          defaultValue={currentValueDate}
           getOptionToFetch={getOptionToFetch}
           values={DATE_FILTER.values}
           label={DATE_FILTER.label}
         />
-        {/* <SearchFilter
-          values={DATE_FILTER.values}
-          defaultValue={defaultValueDate}
-          label={DATE_FILTER.label}
-        /> */}
+        <SearchFilter
+          filter = {DATE_FILTER}
+        />
       </Box>
     </Box>
   );
