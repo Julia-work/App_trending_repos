@@ -112,7 +112,7 @@ const RepoCard = ({ repo }) => {
             <Typography
               component="span"
               sx={{ marginRight: 0.5, fontSize: 12 }}>
-              Built by
+              Built by:
             </Typography>
             <List className={flexContainer}>
               {builtby.map(({ url, username, avatar }) => (

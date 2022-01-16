@@ -1,6 +1,6 @@
-export const LANGUAGE = [
+export const LANGUAGES_LIST = [
   {
-    value: "Any",
+    value: "",
     label: "Any",
   },
   {

@@ -7,7 +7,7 @@ import RepoCard from "./RepoCard";
 import HeaderContent from "../../HeaderContent";
 import Spinner from "../../Spinner";
 import ErrorMassage from "../../ErrorMassage";
-import { getRepos, getOptionToFetch } from "../../../redux/repos/actionRepos";
+import { getRepos } from "../../../redux/repos/actionRepos";
 
 const getStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -44,10 +44,7 @@ const RepoPage = () => {
       <TitleBox subTitle="See what the GitHub community is most excited about today." />
       <Box className={contentWrapper}>
         <Box className={content}>
-          <HeaderContent
-            getOptionToFetch={getOptionToFetch}
-            store={storeRepos}
-          />
+          <HeaderContent />
           {isFetchError === true ? (
             <ErrorMassage />
           ) : isFetching === false && repositories.length >= 1 ? (

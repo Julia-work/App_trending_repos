@@ -6,9 +6,9 @@ const SET_OPTION_REP = "SET_OPTION_REP";
 const defaultState = {
   options: {
     section: "",
-    language: "Any",
+    language: "",
     since: "daily",
-    spoken_language_code: "Any",
+    spoken_language_code: "",
   },
   items: [],
   isFetching: true,

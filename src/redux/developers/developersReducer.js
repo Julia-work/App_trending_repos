@@ -6,11 +6,9 @@ const SET_OPTION_DEV = "SET_OPTION_DEV";
 const defaultState = {
   options: {
     section: "developers",
-    language: "Any",
-    // since: "daily",
-    // since: "weekly",
+    language: "",
     since: "monthly",
-    spoken_language_code: "Any",
+    spoken_language_code: "",
   },
   items: [],
   isFetching: true,

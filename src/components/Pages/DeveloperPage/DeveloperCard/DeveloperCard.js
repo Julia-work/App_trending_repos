@@ -22,22 +22,22 @@ const getStyles = makeStyles((theme) => ({
 }));
 
 const loremIpsum =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
 const DeveloperCard = ({ developer, count }) => {
   const classes = getStyles();
   const [text, setText] = useState(false);
   const [color, setColor] = useState(false);
-  const { 
-    author, 
-    username, 
-    avatar, 
-    url, 
-    reponame, 
-    repourl, 
+  const {
+    author,
+    username,
+    avatar,
+    url,
+    reponame,
+    repourl,
     description } = developer;
   const { cardContainer, cardTitle } = classes;
- 
+
   return (
     <Box className={cardContainer}>
       <Box

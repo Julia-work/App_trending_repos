@@ -13,13 +13,6 @@ export const getDevelopers = (options) => {
       dispatch(setIsFetching(true));
       dispatch(setIsFetchError(false));
 
-      if (options.language === "Any") {
-        options.language = "";
-      }
-      if (options.spoken_language_code === "Any") {
-        options.spoken_language_code = "";
-      }
-
       const response = await githubTrends(options);
       dispatch(setDevelopers(response));
     } catch (e) {

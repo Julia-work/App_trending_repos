@@ -1,33 +1,27 @@
-import { SPOKEN_LANGUAGE } from "./spokenLanguageList.js";
-import { LANGUAGE } from "./languageList.js";
+import { DATE_RANGE_LIST } from "./dateRangeList.js";
+import { LANGUAGES_LIST } from "./languagesList.js";
+import { SPOKEN_LANGUAGES_LIST } from "./spokenLanguagesList.js";
 
-const ALL_OPTION_FILTERS = "Any";
-
-const DATE_FILTER = {
+const DATE_FILTER_CONFIG = {
   label: "Date range:",
   option: "since",
-  values: [
-    { label: "Today", value: "daily" },
-    { label: "This week", value: "weekly" },
-    { label: "This month", value: "monthly" },
-  ],
+  values: DATE_RANGE_LIST,
 };
 
-const LANGUAGE_FILTER = {
+const LANGUAGE_FILTER_CONFIG = {
   label: "Language:",
   option: "language",
-  values: LANGUAGE,
+  values: LANGUAGES_LIST,
 };
 
-const SPOKEN_LANGUAGE_FILTER = {
+const SPOKEN_LANGUAGE_FILTER_CONFIG = {
   label: "Spoken Language:",
   option: "spoken_language_code",
-  values: SPOKEN_LANGUAGE,
+  values: SPOKEN_LANGUAGES_LIST,
 };
 
 export {
-  DATE_FILTER,
-  LANGUAGE_FILTER,
-  SPOKEN_LANGUAGE_FILTER,
-  ALL_OPTION_FILTERS,
+  DATE_FILTER_CONFIG,
+  LANGUAGE_FILTER_CONFIG,
+  SPOKEN_LANGUAGE_FILTER_CONFIG,
 };

@@ -1,6 +1,6 @@
-export const SPOKEN_LANGUAGE = [
+export const SPOKEN_LANGUAGES_LIST = [
   {
-    value: "Any",
+    value: "",
     label: "Any",
   },
   {

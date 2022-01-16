@@ -3,14 +3,12 @@ import { useLocation } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import NavButtonsBox from "../NavButtonsBox";
-import Filter from "../Filter";
 import SearchFilter from "../SearchFilter";
 import {
   REPO_PAGE_PATH_NAME,
-  DEVELOPERS_PAGE_PATH_NAME,
-  DATE_FILTER,
-  LANGUAGE_FILTER,
-  SPOKEN_LANGUAGE_FILTER,
+  DATE_FILTER_CONFIG,
+  LANGUAGE_FILTER_CONFIG,
+  SPOKEN_LANGUAGE_FILTER_CONFIG,
 } from "../../constants";
 
 const getStyles = makeStyles((theme) => ({
@@ -25,19 +23,12 @@ const getStyles = makeStyles((theme) => ({
   },
 }));
 
-const HeaderContent = ({ getOptionToFetch, store }) => {
+const HeaderContent = () => {
   const classes = getStyles();
 
   const location = useLocation();
   const pathName = location.pathname;
   const isRepo = pathName === REPO_PAGE_PATH_NAME;
-  const isDevops = pathName === DEVELOPERS_PAGE_PATH_NAME;
-
-  // isRepo
-  const { options } = store;
-  const currentValueDate = options.since;
-  const currentValueLanguage = options.language;
-  const currentValueSpokenLanguage = options.spoken_language_code;
 
   return (
     <Box className={classes.header}>
@@ -49,30 +40,15 @@ const HeaderContent = ({ getOptionToFetch, store }) => {
           flexWrap: "wrap",
         }}>
         {isRepo && (
-          <Filter
-            option={SPOKEN_LANGUAGE_FILTER.option}
-            defaultValue={currentValueSpokenLanguage}
-            getOptionToFetch={getOptionToFetch}
-            values={SPOKEN_LANGUAGE_FILTER.values}
-            label={SPOKEN_LANGUAGE_FILTER.label}
+          <SearchFilter
+          filter={SPOKEN_LANGUAGE_FILTER_CONFIG}
           />
         )}
-        <Filter
-          option={LANGUAGE_FILTER.option}
-          defaultValue={currentValueLanguage}
-          getOptionToFetch={getOptionToFetch}
-          values={LANGUAGE_FILTER.values}
-          label={LANGUAGE_FILTER.label}
-        />
-        <Filter
-          option={DATE_FILTER.option}
-          defaultValue={currentValueDate}
-          getOptionToFetch={getOptionToFetch}
-          values={DATE_FILTER.values}
-          label={DATE_FILTER.label}
+        <SearchFilter
+          filter={LANGUAGE_FILTER_CONFIG}
         />
         <SearchFilter
-          filter = {DATE_FILTER}
+          filter = {DATE_FILTER_CONFIG}
         />
       </Box>
     </Box>

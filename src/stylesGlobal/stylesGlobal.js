@@ -10,6 +10,7 @@ const colorBlue = "#1F6FEB";
 
 const colorBorder = "#30363d";
 const colorButtonHoverBorder = "#8b949e";
+const border = `1px solid ${colorBorder}`
 
 const theme = createTheme({
   palette: {
@@ -43,20 +44,17 @@ const theme = createTheme({
         },
       },
     },
-
     border: {
-      main: `1px solid ${colorBorder}`,
+      main: border,
     },
-
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: "none",
-          border: `1px solid ${colorBorder}`,
+          border: border,
           backgroundColor: colorBackgroundLight,
           color: colorTextSecondary,
           lineHeight: "20px",
-
           "&:hover": {
             backgroundColor: colorBackgroundLight,
             border: `1px solid ${colorButtonHoverBorder}`,
@@ -82,66 +80,43 @@ const theme = createTheme({
       },
     },
     // for filters
-    MuiFormControl: {
+    MuiAutocomplete: {
       styleOverrides: {
         root: {
-          minWidth: 45,
+          minWidth: 90,
+          // width: "fit-content",
+          "& .MuiAutocomplete-inputRoot .MuiAutocomplete-input": {
+          },
         },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
+        input: {
           color: colorTextMain,
           fontSize: 14,
           fontWeight: 600,
           "&:hover": {
-            "&:before": {
-              border: `none !important`,
-            },
-          },
-          "&:before": {
-            border: "none",
-          },
-          "&:after": {
-            border: "none",
-          },
-        },
+            color: colorTextSecondary,
+          }
+        }
       },
     },
+    // фон выпадaйки
     MuiPaper: {
       styleOverrides: {
         root: {
+          width:200,
           backgroundColor: colorBackgroundLight,
+          border: border,
           color: colorTextSecondary,
           fontSize: 12,
-          border: `1px solid ${colorBorder}`
-        },
-      },
-    },
-    MuiMenuItem: {
-      styleOverrides: {
-        root: {
-          color: colorTextSecondary,
-          fontSize: 12,
-          "&:hover": {
+          "& li:hover": {
             backgroundColor: colorBlue,
           }
         },
       },
     },
-    MuiSvgIcon: {
-      styleOverrides: {
-        root: {
-          "&.MuiSelect-icon": {
-            color: colorTextMain,
-            "&:hover": {
-              color: colorTextSecondary,
-            },
-          },
-        },
-      },
+    MuiInputLabel: {
+      color: colorBlue,
     },
+    // spinner
     MuiCircularProgress: {
       styleOverrides: {
         root: {

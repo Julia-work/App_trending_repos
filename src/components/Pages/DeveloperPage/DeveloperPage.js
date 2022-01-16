@@ -12,11 +12,8 @@ import TitleBox from "../../TitleBox";
 import Spinner from "../../Spinner";
 import ErrorMassage from "../../ErrorMassage";
 
-import { ERROR_PAGE_PATH_NAME } from "../../../constants";
-
 // methods
 import { getDevelopers } from "../../../redux/developers/actionDevelopers";
-import { getOptionToFetch as getOptionDev } from "../../../redux/developers/actionDevelopers";
 
 const getStyles = makeStyles((theme) => ({
   contentWrapper: {
@@ -33,7 +30,6 @@ const getStyles = makeStyles((theme) => ({
 
 const DeveloperPage = () => {
   const classes = getStyles();
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const storeDevelopers = useSelector((store) => store.developers);
@@ -53,10 +49,7 @@ const DeveloperPage = () => {
       <TitleBox subTitle="These are the developers building the hot tools today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <HeaderContent
-            getOptionToFetch={getOptionDev}
-            store={storeDevelopers}
-          />
+          <HeaderContent />
           {isFetchError === true ? (
             <ErrorMassage />
           ) : isFetching === false && developers.length ? (

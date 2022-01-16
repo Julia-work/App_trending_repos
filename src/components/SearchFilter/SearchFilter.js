@@ -10,15 +10,34 @@ import {
 import { getOptionToFetch as  getOptionToFetchDevops} from "../../redux/developers/actionDevelopers";
 import { getOptionToFetch as getOptionToFetchRepos} from "../../redux/repos/actionRepos";
 
-import { Autocomplete,TextField } from "@mui/material";
+import { Autocomplete,TextField,Box,Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-export default function AutoBox({filter}) {
-  const {label,option,values}= filter
+const getStyles = makeStyles((theme) => ({
+  inputRoot: {
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: "none",
+    },
+  },
+  filterWrapper:{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    "&:not(:last-child)":{
+      marginRight: 15,
+    },
+    "& *": {
+      color: theme.palette.primary.main,
+    },
+  },
+}));
 
+export default function SearchFilter({filter}) {
+  const classes = getStyles();
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const { label, option, values }= filter
   const pathName = location.pathname;
   const isRepo = pathName === REPO_PAGE_PATH_NAME;
 
@@ -39,15 +58,29 @@ export default function AutoBox({filter}) {
   }, [value]);
 
   return (
-    <Autocomplete
-      disableClearable
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
-      options={values.map((item)=>item.label)}
-      sx={{ width: 150 }}
-      renderInput={(params) => <TextField {...params} />}
-    />
+    <Box className={classes.filterWrapper} >
+      <Typography
+        variant="span"
+        sx={{ color: "primary.main",fontSize:14 }}
+      >
+        {label}
+      </Typography>
+      <Autocomplete
+        classes={classes}
+        disableClearable
+        size="small"
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        options={values.map((item)=>item.label)}
+        sx={{ width: 150 }}
+        PaperComponent={({ children }) => (
+          <Paper >{children}</Paper>
+        )}
+        // popoverProps={{ style: { width: 'auto'} }}
+        renderInput={(params) => <TextField {...params} />}
+      />
+    </Box>
 );
 }
