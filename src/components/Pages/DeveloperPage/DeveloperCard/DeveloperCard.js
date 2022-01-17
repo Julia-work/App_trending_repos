@@ -28,14 +28,8 @@ const DeveloperCard = ({ developer, count }) => {
   const classes = getStyles();
   const [text, setText] = useState(false);
   const [color, setColor] = useState(false);
-  const {
-    author,
-    username,
-    avatar,
-    url,
-    reponame,
-    repourl,
-    description } = developer;
+  const { author, username, avatar, url, reponame, repourl, description } =
+    developer;
   const { cardContainer, cardTitle } = classes;
 
   return (
@@ -45,13 +39,15 @@ const DeveloperCard = ({ developer, count }) => {
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "space-between",
-        }}>
+        }}
+      >
         <Link
           href={url}
           target="_blank"
           title={author}
           underline="none"
-          sx={{ marginRight: 1 }}>
+          sx={{ marginRight: 1 }}
+        >
           {count}
         </Link>
         <Link
@@ -59,7 +55,8 @@ const DeveloperCard = ({ developer, count }) => {
           target="_blank"
           underline="hover"
           title={author}
-          sx={{ margin: "0 16px" }}>
+          sx={{ margin: "0 16px" }}
+        >
           <Avatar alt={author} src={avatar} sx={{ width: 48, height: 48 }} />
         </Link>
         <Box
@@ -68,7 +65,8 @@ const DeveloperCard = ({ developer, count }) => {
             flexGrow: 1,
             alignItems: "flex-start",
             flexWrap: "wrap",
-          }}>
+          }}
+        >
           <Box sx={{ display: "flex", flexGrow: 1, flexWrap: "wrap" }}>
             <Box
               sx={{
@@ -76,7 +74,8 @@ const DeveloperCard = ({ developer, count }) => {
                 flexDirection: "column",
                 flex: "1 0 0",
                 flexWrap: "wrap",
-              }}>
+              }}
+            >
               <Typography variant="h2">
                 <Link
                   href={url}
@@ -84,7 +83,8 @@ const DeveloperCard = ({ developer, count }) => {
                   underline="hover"
                   className={cardTitle}
                   color="secondary.main"
-                  title={author}>
+                  title={author}
+                >
                   {" "}
                   {author}
                 </Link>
@@ -94,7 +94,8 @@ const DeveloperCard = ({ developer, count }) => {
               </Link>
             </Box>
             <Box
-              sx={{ display: "flex", flexDirection: "column", flex: "1 0 0" }}>
+              sx={{ display: "flex", flexDirection: "column", flex: "1 0 0" }}
+            >
               <Typography variant="span">
                 <LocalFireDepartmentIcon
                   sx={{
@@ -113,7 +114,8 @@ const DeveloperCard = ({ developer, count }) => {
                   underline="hover"
                   color="secondary.main"
                   sx={{ fontWeight: 600 }}
-                  title={author}>
+                  title={author}
+                >
                   {" "}
                   <BookOutlinedIcon
                     color="primary"
@@ -132,10 +134,12 @@ const DeveloperCard = ({ developer, count }) => {
               width: "170px",
               display: "flex",
               justifyContent: "space-between",
-            }}>
+            }}
+          >
             <Button
               sx={{ fontSize: 12, padding: "3px 12px" }}
-              onClick={() => setColor(!color)}>
+              onClick={() => setColor(!color)}
+            >
               {color ? (
                 <FavoriteIcon
                   sx={{
@@ -159,7 +163,8 @@ const DeveloperCard = ({ developer, count }) => {
             </Button>
             <Button
               sx={{ fontSize: 12, padding: "3px 12px", width: 72 }}
-              onClick={() => setText(!text)}>
+              onClick={() => setText(!text)}
+            >
               <Typography variant="span">
                 {text ? "unfollow" : "follow"}
               </Typography>

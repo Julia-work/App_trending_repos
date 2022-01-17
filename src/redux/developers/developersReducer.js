@@ -12,7 +12,7 @@ const defaultState = {
   },
   items: [],
   isFetching: true,
-  isFetchError: false
+  isFetchError: false,
 };
 
 export default function developersReducer(state = defaultState, action) {
@@ -22,7 +22,7 @@ export default function developersReducer(state = defaultState, action) {
         ...state,
         items: action.payload,
         isFetching: false,
-        isFetchError: false
+        isFetchError: false,
       };
     case SET_IS_FETCHING:
       return {

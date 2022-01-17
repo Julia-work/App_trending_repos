@@ -38,18 +38,11 @@ const HeaderContent = () => {
           display: "flex",
           justifyContent: "space-between",
           flexWrap: "wrap",
-        }}>
-        {isRepo && (
-          <SearchFilter
-          filter={SPOKEN_LANGUAGE_FILTER_CONFIG}
-          />
-        )}
-        <SearchFilter
-          filter={LANGUAGE_FILTER_CONFIG}
-        />
-        <SearchFilter
-          filter = {DATE_FILTER_CONFIG}
-        />
+        }}
+      >
+        {isRepo && <SearchFilter filter={SPOKEN_LANGUAGE_FILTER_CONFIG} />}
+        <SearchFilter filter={LANGUAGE_FILTER_CONFIG} />
+        <SearchFilter filter={DATE_FILTER_CONFIG} />
       </Box>
     </Box>
   );

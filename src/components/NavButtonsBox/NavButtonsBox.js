@@ -36,18 +36,20 @@ const NavButtonsBox = () => {
   const classes = getStyles();
 
   return (
-    <nav >
+    <nav>
       <ButtonGroup variant="contained" className={classes.navButtonsBox}>
         <Button
           variant="contained"
           component={NavLink}
-          to={REPO_PAGE_PATH_NAME}>
+          to={REPO_PAGE_PATH_NAME}
+        >
           Repositories
         </Button>
         <Button
           variant="contained"
           component={NavLink}
-          to={DEVELOPERS_PAGE_PATH_NAME}>
+          to={DEVELOPERS_PAGE_PATH_NAME}
+        >
           Developers
         </Button>
       </ButtonGroup>

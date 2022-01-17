@@ -1,6 +1,11 @@
 import githubTrends from "github-trends-api";
 
-import { setRepos, setOption, setIsFetching,setIsFetchError } from "./reposReducer";
+import {
+  setRepos,
+  setOption,
+  setIsFetching,
+  setIsFetchError,
+} from "./reposReducer";
 
 export const getRepos = (options) => {
   return async (dispatch) => {

@@ -53,29 +53,30 @@ const RepoCard = ({ repo }) => {
     <Box className={cardContainer}>
       <Box
         className={flexContainer}
-        sx={{ flexWrap: "wrap", alignItems: "start" }}>
+        sx={{ flexWrap: "wrap", alignItems: "start" }}
+      >
         <Typography variant="h2">
           <Link
             href={repourl}
             underline="hover"
             className={cardTitle}
             color="secondary.main"
-            title={author}>
+            title={author}
+          >
             {" "}
             <BookOutlinedIcon color="primary" sx={{ marginRight: 0.5 }} />
             {`${author} / ${reponame}`}
           </Link>
         </Typography>
-
         <ButtonStar />
       </Box>
       <Typography variant="body1" gutterBottom fontSize={14} margin="5px 0">
         {repodesc}
       </Typography>
-
       <Box
         className={[flexContainer, cardFooter].join(" ")}
-        sx={{ flexWrap: "wrap" }}>
+        sx={{ flexWrap: "wrap" }}
+      >
         <Box className={flexContainer} sx={{ flexWrap: "wrap" }}>
           <List className={classes.flexContainer}>
             {language ? (
@@ -83,7 +84,6 @@ const RepoCard = ({ repo }) => {
                 <Typography sx={{ fontSize: 12 }}>{language}</Typography>
               </ListItem>
             ) : null}
-
             {stars ? (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
                 <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
@@ -93,7 +93,6 @@ const RepoCard = ({ repo }) => {
                 </Link>
               </ListItem>
             ) : null}
-
             {forks ? (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
                 <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
@@ -107,11 +106,11 @@ const RepoCard = ({ repo }) => {
               </ListItem>
             ) : null}
           </List>
-
           <Box className={flexContainer}>
             <Typography
               component="span"
-              sx={{ marginRight: 0.5, fontSize: 12 }}>
+              sx={{ marginRight: 0.5, fontSize: 12 }}
+            >
               Built by:
             </Typography>
             <List className={flexContainer}>
@@ -121,7 +120,8 @@ const RepoCard = ({ repo }) => {
                     href={url}
                     underline="none"
                     title={username}
-                    target="_blank">
+                    target="_blank"
+                  >
                     {" "}
                     <Avatar
                       alt={username}
@@ -134,11 +134,11 @@ const RepoCard = ({ repo }) => {
             </List>
           </Box>
         </Box>
-
         <Box className={flexContainer} sx={{ padding: "8px 0" }}>
           <StarOutlineIcon fontSize="small" />
           <Typography
-            sx={{ fontSize: 12 }}>{`${laststars} stars today`}</Typography>
+            sx={{ fontSize: 12 }}
+          >{`${laststars} stars today`}</Typography>
         </Box>
       </Box>
     </Box>

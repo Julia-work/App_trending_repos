@@ -16,7 +16,8 @@ const ButtonStar = () => {
     <ButtonGroup variant="contained" size="small" disableElevation>
       <Button
         sx={{ border: `1px solid #30363d !important` }}
-        onClick={() => setColor(!color)}>
+        onClick={() => setColor(!color)}
+      >
         {color ? (
           <StarIcon sx={{ fontSize: 16, marginRight: 1, color: "#FFCF48" }} />
         ) : (
@@ -26,7 +27,8 @@ const ButtonStar = () => {
       </Button>
       <Button
         size="small"
-        sx={{ fontSize: 12, padding: "3px 8px", minWidth: 28 }}>
+        sx={{ fontSize: 12, padding: "3px 8px", minWidth: 28 }}
+      >
         <ArrowDropDownIcon sx={{ width: 16, height: 16 }} />
       </Button>
     </ButtonGroup>

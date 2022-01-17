@@ -22,7 +22,7 @@ export default function reposReducer(state = defaultState, action) {
         ...state,
         items: action.payload,
         isFetching: false,
-        isFetchError: false
+        isFetchError: false,
       };
     case SET_IS_FETCHING:
       return {

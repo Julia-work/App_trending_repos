@@ -10,7 +10,7 @@ const colorBlue = "#1F6FEB";
 
 const colorBorder = "#30363d";
 const colorButtonHoverBorder = "#8b949e";
-const border = `1px solid ${colorBorder}`
+const border = `1px solid ${colorBorder}`;
 
 const theme = createTheme({
   palette: {
@@ -83,10 +83,6 @@ const theme = createTheme({
     MuiAutocomplete: {
       styleOverrides: {
         root: {
-          minWidth: 90,
-          // width: "fit-content",
-          "& .MuiAutocomplete-inputRoot .MuiAutocomplete-input": {
-          },
         },
         input: {
           color: colorTextMain,
@@ -94,22 +90,22 @@ const theme = createTheme({
           fontWeight: 600,
           "&:hover": {
             color: colorTextSecondary,
-          }
-        }
+          },
+        },
       },
     },
     // фон выпадaйки
     MuiPaper: {
       styleOverrides: {
         root: {
-          width:200,
+          width: 200,
           backgroundColor: colorBackgroundLight,
           border: border,
           color: colorTextSecondary,
           fontSize: 12,
           "& li:hover": {
             backgroundColor: colorBlue,
-          }
+          },
         },
       },
     },

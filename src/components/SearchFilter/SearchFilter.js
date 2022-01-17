@@ -1,16 +1,14 @@
-
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import {
   REPO_PAGE_PATH_NAME,
-  DEVELOPERS_PAGE_PATH_NAME
+  DEVELOPERS_PAGE_PATH_NAME,
 } from "../../constants";
-import { getOptionToFetch as  getOptionToFetchDevops} from "../../redux/developers/actionDevelopers";
-import { getOptionToFetch as getOptionToFetchRepos} from "../../redux/repos/actionRepos";
+import { getOptionToFetch as getOptionToFetchDevops } from "../../redux/developers/actionDevelopers";
+import { getOptionToFetch as getOptionToFetchRepos } from "../../redux/repos/actionRepos";
 
-import { Autocomplete,TextField,Box,Paper, Typography } from "@mui/material";
+import { Autocomplete, TextField, Box, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const getStyles = makeStyles((theme) => ({
@@ -19,11 +17,11 @@ const getStyles = makeStyles((theme) => ({
       border: "none",
     },
   },
-  filterWrapper:{
+  filterWrapper: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    "&:not(:last-child)":{
+    "&:not(:last-child)": {
       marginRight: 15,
     },
     "& *": {
@@ -32,55 +30,65 @@ const getStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchFilter({filter}) {
+export default function SearchFilter({ filter }) {
   const classes = getStyles();
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { label, option, values }= filter
+  const { label, option, values } = filter;
   const pathName = location.pathname;
   const isRepo = pathName === REPO_PAGE_PATH_NAME;
 
-  const store = (isRepo)
+  const store = isRepo
     ? useSelector((store) => store.repos)
-    : useSelector((store) => store.developers)
+    : useSelector((store) => store.developers);
 
-  const currentValue = store.options[option]
-  const currentLabel = (values.find(item => item.value === currentValue)).label
+  const currentValue = store.options[option];
+  const currentLabel = values.find((item) => item.value === currentValue).label;
+  const defaultInputWidth = currentLabel.length * 12;
 
   const [value, setValue] = useState(currentLabel);
 
+  const [inputWidth, setInputWidth] = useState(defaultInputWidth);
+
+  console.log("defaultInputWidth", defaultInputWidth);
+  console.log("currentLabel", currentLabel);
+  console.log("inputWidth", inputWidth);
+
   useEffect(() => {
-    const needValue = (values.find(item => item.label === value)).value;
-    (isRepo)
+    const needValue = values.find((item) => item.label === value).value;
+    setInputWidth(value.length * 12);
+    isRepo
       ? dispatch(getOptionToFetchRepos(option, needValue))
-      : dispatch(getOptionToFetchDevops(option, needValue))
+      : dispatch(getOptionToFetchDevops(option, needValue));
   }, [value]);
 
   return (
-    <Box className={classes.filterWrapper} >
-      <Typography
-        variant="span"
-        sx={{ color: "primary.main",fontSize:14 }}
-      >
+    <Box className={classes.filterWrapper}>
+      <Typography variant="span" sx={{ color: "primary.main", fontSize: 14 }}>
         {label}
       </Typography>
       <Autocomplete
         classes={classes}
         disableClearable
+        // auto
         size="small"
         value={value}
+        sx={{width: 100}}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
-        options={values.map((item)=>item.label)}
-        sx={{ width: 150 }}
-        PaperComponent={({ children }) => (
-          <Paper >{children}</Paper>
+        options={values.map((item) => item.label)}
+        // sx={{ width: "stretch" }}
+        // sx={{ width: `${inputWidth}px`, minWidth:`${inputWidth}px` }}
+        PaperComponent={({ children }) => <Paper>{children}</Paper>}
+        renderInput={(params) => (
+          <TextField
+            // sx={{ width: `${inputWidth}px`, minWidth:`${inputWidth}px` }}
+            {...params}
+          />
         )}
-        // popoverProps={{ style: { width: 'auto'} }}
-        renderInput={(params) => <TextField {...params} />}
       />
     </Box>
-);
+  );
 }
