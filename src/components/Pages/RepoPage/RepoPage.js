@@ -6,7 +6,7 @@ import TitleBox from "../../TitleBox";
 import RepoCard from "./RepoCard";
 import HeaderContent from "../../HeaderContent";
 import Spinner from "../../Spinner";
-import ErrorMassage from "../../ErrorMassage";
+import ErrorMessage from "../../ErrorMessage";
 import ErrorBoundary from "../../ErrorBoundary";
 import { getRepos } from "../../../redux/repos/actionRepos";
 
@@ -45,19 +45,18 @@ const RepoPage = () => {
       <TitleBox subTitle="See what the GitHub community is most excited about today." />
       <Box className={contentWrapper}>
         <Box className={content}>
-          <HeaderContent />
           <ErrorBoundary>
-            {isFetchError === true ? (
-              <ErrorMassage />
-            ) : isFetching === false && repositories.length >= 1 ? (
+            <HeaderContent />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            {isFetchError && <ErrorMessage />}
+            {isFetching && <Spinner />}
+            {!isFetching &&
+              repositories.length >= 1 &&
               repositories.map((repo) => (
                 <RepoCard key={repo.repourl} repo={repo} />
-              ))
-            ) : isFetching === false && repositories.length < 1 ? (
-              <ErrorMassage />
-            ) : (
-              <Spinner />
-            )}
+              ))}
+            {!isFetching && repositories.length < 1 && <ErrorMessage />}
           </ErrorBoundary>
         </Box>
       </Box>

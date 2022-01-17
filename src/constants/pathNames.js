@@ -1,5 +1,4 @@
-const REPO_PAGE_PATH_NAME = "/";
-const DEVELOPERS_PAGE_PATH_NAME = "/developers";
-const ERROR_PAGE_PATH_NAME = "/error";
-
-export { REPO_PAGE_PATH_NAME, DEVELOPERS_PAGE_PATH_NAME, ERROR_PAGE_PATH_NAME };
+export const PATH_NAME = {
+  repos: "/",
+  developers: "/developers",
+};

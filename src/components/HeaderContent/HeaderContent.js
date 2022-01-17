@@ -4,12 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import NavButtonsBox from "../NavButtonsBox";
 import SearchFilter from "../SearchFilter";
-import {
-  REPO_PAGE_PATH_NAME,
-  DATE_FILTER_CONFIG,
-  LANGUAGE_FILTER_CONFIG,
-  SPOKEN_LANGUAGE_FILTER_CONFIG,
-} from "../../constants";
+import { PATH_NAME, FILTERS_CONFIG } from "../../constants";
 
 const getStyles = makeStyles((theme) => ({
   header: {
@@ -28,7 +23,7 @@ const HeaderContent = () => {
 
   const location = useLocation();
   const pathName = location.pathname;
-  const isRepo = pathName === REPO_PAGE_PATH_NAME;
+  const isRepo = pathName === PATH_NAME.repos;
 
   return (
     <Box className={classes.header}>
@@ -40,9 +35,9 @@ const HeaderContent = () => {
           flexWrap: "wrap",
         }}
       >
-        {isRepo && <SearchFilter filter={SPOKEN_LANGUAGE_FILTER_CONFIG} />}
-        <SearchFilter filter={LANGUAGE_FILTER_CONFIG} />
-        <SearchFilter filter={DATE_FILTER_CONFIG} />
+        {isRepo && <SearchFilter filter={FILTERS_CONFIG.spoken_language} />}
+        <SearchFilter filter={FILTERS_CONFIG.language} />
+        <SearchFilter filter={FILTERS_CONFIG.dateRange} />
       </Box>
     </Box>
   );

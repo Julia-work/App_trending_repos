@@ -1,13 +1,9 @@
 import React from "react";
-
 import { makeStyles } from "@mui/styles";
-// mui components
 import { Box, Link, Typography, Avatar, List, ListItem } from "@mui/material";
-// icons
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
 import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
-// my components
 import ButtonStar from "../../../ButtonStar";
 
 const getStyles = makeStyles((theme) => ({
@@ -79,12 +75,12 @@ const RepoCard = ({ repo }) => {
       >
         <Box className={flexContainer} sx={{ flexWrap: "wrap" }}>
           <List className={classes.flexContainer}>
-            {language ? (
+            {language && (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
                 <Typography sx={{ fontSize: 12 }}>{language}</Typography>
               </ListItem>
-            ) : null}
-            {stars ? (
+            )}
+            {stars && (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
                 <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
                   {" "}
@@ -92,8 +88,8 @@ const RepoCard = ({ repo }) => {
                   {stars}
                 </Link>
               </ListItem>
-            ) : null}
-            {forks ? (
+            )}
+            {forks && (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
                 <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
                   {" "}
@@ -104,7 +100,7 @@ const RepoCard = ({ repo }) => {
                   {forks}
                 </Link>
               </ListItem>
-            ) : null}
+            )}
           </List>
           <Box className={flexContainer}>
             <Typography
@@ -116,12 +112,7 @@ const RepoCard = ({ repo }) => {
             <List className={flexContainer}>
               {builtby.map(({ url, username, avatar }) => (
                 <ListItem key={url} disablePadding sx={{ marginRight: 1 }}>
-                  <Link
-                    href={url}
-                    underline="none"
-                    title={username}
-                    target="_blank"
-                  >
+                  <Link href={url} title={username} target="_blank">
                     {" "}
                     <Avatar
                       alt={username}
@@ -136,9 +127,9 @@ const RepoCard = ({ repo }) => {
         </Box>
         <Box className={flexContainer} sx={{ padding: "8px 0" }}>
           <StarOutlineIcon fontSize="small" />
-          <Typography
-            sx={{ fontSize: 12 }}
-          >{`${laststars} stars today`}</Typography>
+          <Typography sx={{ fontSize: 12 }}>
+            {`${laststars} stars today`}
+          </Typography>
         </Box>
       </Box>
     </Box>

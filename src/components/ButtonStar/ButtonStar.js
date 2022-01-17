@@ -1,10 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
-// mui components
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
-// icons
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import StarIcon from "@mui/icons-material/Star";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";

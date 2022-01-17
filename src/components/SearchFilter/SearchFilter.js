@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import {
-  REPO_PAGE_PATH_NAME,
-  DEVELOPERS_PAGE_PATH_NAME,
-} from "../../constants";
+import { PATH_NAME } from "../../constants";
 import { getOptionToFetch as getOptionToFetchDevops } from "../../redux/developers/actionDevelopers";
 import { getOptionToFetch as getOptionToFetchRepos } from "../../redux/repos/actionRepos";
-
 import { Autocomplete, TextField, Box, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -37,7 +33,7 @@ export default function SearchFilter({ filter }) {
 
   const { label, option, values } = filter;
   const pathName = location.pathname;
-  const isRepo = pathName === REPO_PAGE_PATH_NAME;
+  const isRepo = pathName === PATH_NAME.repos;
 
   const store = isRepo
     ? useSelector((store) => store.repos)
@@ -71,10 +67,9 @@ export default function SearchFilter({ filter }) {
       <Autocomplete
         classes={classes}
         disableClearable
-        // auto
         size="small"
         value={value}
-        sx={{width: 100}}
+        sx={{ width: 100 }}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}

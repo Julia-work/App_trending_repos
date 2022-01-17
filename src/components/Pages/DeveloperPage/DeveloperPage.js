@@ -10,9 +10,8 @@ import DeveloperCard from "./DeveloperCard";
 import HeaderContent from "../../HeaderContent";
 import TitleBox from "../../TitleBox";
 import Spinner from "../../Spinner";
-import ErrorMassage from "../../ErrorMassage";
-
-// methods
+import ErrorMessage from "../../ErrorMessage";
+import ErrorBoundary from "../../ErrorBoundary";
 import { getDevelopers } from "../../../redux/developers/actionDevelopers";
 
 const getStyles = makeStyles((theme) => ({
@@ -49,22 +48,23 @@ const DeveloperPage = () => {
       <TitleBox subTitle="These are the developers building the hot tools today." />
       <Box className={classes.contentWrapper}>
         <Box className={classes.content}>
-          <HeaderContent />
-          {isFetchError === true ? (
-            <ErrorMassage />
-          ) : isFetching === false && developers.length ? (
-            developers.map((developer, index) => (
-              <DeveloperCard
-                key={developer.repourl}
-                developer={developer}
-                count={index + 1}
-              />
-            ))
-          ) : isFetching === false && developers.length < 1 ? (
-            <ErrorMassage />
-          ) : (
-            <Spinner />
-          )}
+          <ErrorBoundary>
+            <HeaderContent />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            {isFetchError && <ErrorMessage />}
+            {isFetching && <Spinner />}
+            {!isFetching &&
+              developers.length >= 1 &&
+              developers.map((developer, index) => (
+                <DeveloperCard
+                  key={developer.repourl}
+                  developer={developer}
+                  count={index + 1}
+                />
+              ))}
+            {!isFetching && developers.length < 1 && <ErrorMessage />}
+          </ErrorBoundary>
         </Box>
       </Box>
     </main>
