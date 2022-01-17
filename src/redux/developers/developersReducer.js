@@ -7,7 +7,7 @@ const defaultState = {
   options: {
     section: "developers",
     language: "",
-    since: "monthly",
+    since: "daily",
     spoken_language_code: "",
   },
   items: [],

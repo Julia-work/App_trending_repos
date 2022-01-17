@@ -7,6 +7,7 @@ import RepoCard from "./RepoCard";
 import HeaderContent from "../../HeaderContent";
 import Spinner from "../../Spinner";
 import ErrorMassage from "../../ErrorMassage";
+import ErrorBoundary from "../../ErrorBoundary";
 import { getRepos } from "../../../redux/repos/actionRepos";
 
 const getStyles = makeStyles((theme) => ({
@@ -45,17 +46,19 @@ const RepoPage = () => {
       <Box className={contentWrapper}>
         <Box className={content}>
           <HeaderContent />
-          {isFetchError === true ? (
-            <ErrorMassage />
-          ) : isFetching === false && repositories.length >= 1 ? (
-            repositories.map((repo) => (
-              <RepoCard key={repo.repourl} repo={repo} />
-            ))
-          ) : isFetching === false && repositories.length < 1 ? (
-            <ErrorMassage />
-          ) : (
-            <Spinner />
-          )}
+          <ErrorBoundary>
+            {isFetchError === true ? (
+              <ErrorMassage />
+            ) : isFetching === false && repositories.length >= 1 ? (
+              repositories.map((repo) => (
+                <RepoCard key={repo.repourl} repo={repo} />
+              ))
+            ) : isFetching === false && repositories.length < 1 ? (
+              <ErrorMassage />
+            ) : (
+              <Spinner />
+            )}
+          </ErrorBoundary>
         </Box>
       </Box>
     </main>
