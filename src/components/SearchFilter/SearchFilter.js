@@ -9,7 +9,7 @@ import {
 import { Autocomplete, TextField, Box, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const getStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   inputRoot: {
     "& .MuiOutlinedInput-notchedOutline": {
       border: "none",
@@ -29,7 +29,7 @@ const getStyles = makeStyles((theme) => ({
 }));
 
 export default function SearchFilter({ filter }) {
-  const classes = getStyles();
+  const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -42,19 +42,12 @@ export default function SearchFilter({ filter }) {
     : useSelector((store) => store.optionsToFetchDevelopers[option]);
 
   const currentLabel = values.find((item) => item.value === currentValue).label;
-  const defaultInputWidth = currentLabel.length * 12;
 
   const [value, setValue] = useState(currentLabel);
-
-  const [inputWidth, setInputWidth] = useState(defaultInputWidth);
-
-  // console.log("defaultInputWidth", defaultInputWidth);
-  // console.log("currentLabel", currentLabel);
-  // console.log("inputWidth", inputWidth);
+  let valueWidth = `${value.length <= 10 ? 14 : value.length}ch`;
 
   useEffect(() => {
     const needValue = values.find((item) => item.label === value).value;
-    setInputWidth(value.length * 12);
     isRepo
       ? dispatch(setOptionReposToFetch(option, needValue))
       : dispatch(setOptionDevopsToFetch(option, needValue));
@@ -70,19 +63,14 @@ export default function SearchFilter({ filter }) {
         disableClearable
         size="small"
         value={value}
-        sx={{ width: 100 }}
+        sx={{ width: valueWidth }}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
         options={values.map((item) => item.label)}
-        // sx={{ width: "stretch" }}
-        // sx={{ width: `${inputWidth}px`, minWidth:`${inputWidth}px` }}
         PaperComponent={({ children }) => <Paper>{children}</Paper>}
         renderInput={(params) => (
-          <TextField
-            // sx={{ width: `${inputWidth}px`, minWidth:`${inputWidth}px` }}
-            {...params}
-          />
+          <TextField sx={{ width: valueWidth }} {...params} />
         )}
       />
     </Box>

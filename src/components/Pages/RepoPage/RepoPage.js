@@ -9,9 +9,9 @@ import Spinner from "../../Spinner";
 import ErrorMessage from "../../ErrorMessage";
 import ErrorBoundary from "../../ErrorBoundary";
 import { getData } from "../../../redux/action";
-import {NAME_ITEMS_REPO} from '../../../redux/constants'
+import { NAME_ITEMS_REPO } from "../../../redux/constants";
 
-const getStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   contentWrapper: {
     maxWidth: 1046,
     margin: "0 auto",
@@ -25,13 +25,18 @@ const getStyles = makeStyles((theme) => ({
 }));
 
 const RepoPage = () => {
-  const classes = getStyles();
+  const classes = useStyles();
   const { contentWrapper, content } = classes;
   const dispatch = useDispatch();
 
   const store = useSelector((store) => store);
 
-  const { [NAME_ITEMS_REPO]:repos, optionsToFetchRepos, isFetching, isFetchError } = store;
+  const {
+    [NAME_ITEMS_REPO]: repos,
+    optionsToFetchRepos,
+    isFetching,
+    isFetchError,
+  } = store;
 
   useEffect(() => {
     dispatch(getData(optionsToFetchRepos, NAME_ITEMS_REPO));
@@ -47,10 +52,13 @@ const RepoPage = () => {
           </ErrorBoundary>
           <ErrorBoundary>
             {isFetchError && <ErrorMessage />}
+
             {isFetching && <Spinner />}
+
             {!isFetching &&
               repos.length >= 1 &&
               repos.map((repo) => <RepoCard key={repo.repourl} repo={repo} />)}
+              
             {!isFetching && repos.length < 1 && <ErrorMessage />}
           </ErrorBoundary>
         </Box>

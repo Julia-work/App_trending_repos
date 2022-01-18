@@ -4,18 +4,13 @@ import { Box, Link, Typography, Avatar, List, ListItem } from "@mui/material";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
 import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
+import CardTitle from "../../../CardTitle";
 import ButtonStar from "../../../ButtonStar";
 
-const getStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   cardContainer: {
     padding: 16,
     borderBottom: theme.components.border.main,
-  },
-  cardTitle: {
-    fontSize: 20,
-    fontWeight: 600,
-    paddingRight: 10,
-    paddingBottom: 5,
   },
   flexContainer: {
     display: "flex",
@@ -41,9 +36,8 @@ const RepoCard = ({ repo }) => {
     builtby,
     laststars,
   } = repo;
-
-  const classes = getStyles();
-  const { cardContainer, cardTitle, flexContainer, cardFooter } = classes;
+  const classes = useStyles();
+  const { cardContainer, flexContainer, cardFooter } = classes;
 
   return (
     <Box className={cardContainer}>
@@ -51,19 +45,10 @@ const RepoCard = ({ repo }) => {
         className={flexContainer}
         sx={{ flexWrap: "wrap", alignItems: "start" }}
       >
-        <Typography variant="h2">
-          <Link
-            href={repourl}
-            underline="hover"
-            className={cardTitle}
-            color="secondary.main"
-            title={author}
-          >
-            {" "}
-            <BookOutlinedIcon color="primary" sx={{ marginRight: 0.5 }} />
-            {`${author} / ${reponame}`}
-          </Link>
-        </Typography>
+        <CardTitle url={repourl} title={author}>
+          <BookOutlinedIcon color="primary" sx={{ marginRight: 0.5 }} />
+          {`${author} / ${reponame}`}
+        </CardTitle>
         <ButtonStar />
       </Box>
       <Typography variant="body1" gutterBottom fontSize={14} margin="5px 0">
@@ -74,7 +59,7 @@ const RepoCard = ({ repo }) => {
         sx={{ flexWrap: "wrap" }}
       >
         <Box className={flexContainer} sx={{ flexWrap: "wrap" }}>
-          <List className={classes.flexContainer}>
+          <List className={flexContainer}>
             {language && (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
                 <Typography sx={{ fontSize: 12 }}>{language}</Typography>
@@ -82,8 +67,7 @@ const RepoCard = ({ repo }) => {
             )}
             {stars && (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
-                <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
-                  {" "}
+                <Link href={`${repourl}/stargazers`} sx={{ fontSize: 12 }}>
                   <StarOutlineIcon fontSize="small" sx={{ marginRight: 0.5 }} />
                   {stars}
                 </Link>
@@ -91,8 +75,10 @@ const RepoCard = ({ repo }) => {
             )}
             {forks && (
               <ListItem disablePadding sx={{ marginRight: 2 }}>
-                <Link href={"#"} underline="none" sx={{ fontSize: 12 }}>
-                  {" "}
+                <Link
+                  href={`${repourl}/network/members.${reponame}`}
+                  sx={{ fontSize: 12 }}
+                >
                   <AccountTreeOutlinedIcon
                     fontSize="small"
                     sx={{ marginRight: 0.5 }}
@@ -112,8 +98,7 @@ const RepoCard = ({ repo }) => {
             <List className={flexContainer}>
               {builtby.map(({ url, username, avatar }) => (
                 <ListItem key={url} disablePadding sx={{ marginRight: 1 }}>
-                  <Link href={url} title={username} target="_blank">
-                    {" "}
+                  <Link href={url} title={username}>
                     <Avatar
                       alt={username}
                       src={avatar}

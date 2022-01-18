@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { Button, ButtonGroup } from "@mui/material";
 import { PATH_NAME } from "../../constants";
 
-const getStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   navButtonsBox: {
     marginRight: 15,
     "& a": {
@@ -30,7 +30,7 @@ const getStyles = makeStyles((theme) => ({
 }));
 
 const NavButtonsBox = () => {
-  const classes = getStyles();
+  const classes = useStyles();
 
   return (
     <nav>

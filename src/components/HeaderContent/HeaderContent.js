@@ -6,7 +6,7 @@ import NavButtonsBox from "../NavButtonsBox";
 import SearchFilter from "../SearchFilter";
 import { PATH_NAME, FILTERS_CONFIG } from "../../constants";
 
-const getStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.primary.backgroundLight,
     borderRadius: "6px 6px 0 0",
@@ -19,7 +19,7 @@ const getStyles = makeStyles((theme) => ({
 }));
 
 const HeaderContent = () => {
-  const classes = getStyles();
+  const classes = useStyles();
 
   const location = useLocation();
   const pathName = location.pathname;

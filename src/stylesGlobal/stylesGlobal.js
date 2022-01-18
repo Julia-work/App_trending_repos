@@ -70,6 +70,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
+          textDecoration: "none",
           "&:hover": {
             color: colorBlue,
           },
@@ -78,8 +79,7 @@ const theme = createTheme({
     },
     MuiAutocomplete: {
       styleOverrides: {
-        root: {
-        },
+        root: {},
         input: {
           color: colorTextMain,
           fontSize: 14,

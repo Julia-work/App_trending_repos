@@ -11,7 +11,7 @@ import ErrorBoundary from "../../ErrorBoundary";
 import { getData } from "../../../redux/action";
 import { NAME_ITEMS_DEVOPS } from "../../../redux/constants";
 
-const getStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   contentWrapper: {
     maxWidth: 1046,
     margin: "0 auto",
@@ -25,7 +25,7 @@ const getStyles = makeStyles((theme) => ({
 }));
 
 const DeveloperPage = () => {
-  const classes = getStyles();
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const store = useSelector((store) => store);

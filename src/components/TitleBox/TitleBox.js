@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Typography, Box } from "@mui/material";
 
-const getStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   titleBox: {
     backgroundColor: theme.palette.primary.backgroundLight,
     padding: theme.spacing(5, 2),
@@ -17,7 +17,7 @@ const getStyles = makeStyles((theme) => ({
 }));
 
 const TitleBox = ({ subTitle }) => {
-  const classes = getStyles();
+  const classes = useStyles();
 
   return (
     <Box className={classes.titleBox}>
