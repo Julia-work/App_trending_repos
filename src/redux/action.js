@@ -1,29 +1,22 @@
 import githubTrends from "github-trends-api";
 
 import {
-  setRepos,
-  setOption,
+  setData,
   setIsFetching,
   setIsFetchError,
-} from "./reposReducer";
+} from "./actionCreators";
 
-export const getRepos = (options) => {
+export const getData = (options, nameItems) => {
   return async (dispatch) => {
     try {
       dispatch(setIsFetching(true));
-      dispatch(setIsFetchError(false));
-
       const response = await githubTrends(options);
-      dispatch(setRepos(response));
+      dispatch(setData(response, nameItems));
+      dispatch(setIsFetching(false));
+      dispatch(setIsFetchError(false));
     } catch (e) {
       dispatch(setIsFetchError(true));
       dispatch(setIsFetching(false));
     }
-  };
-};
-
-export const getOptionToFetch = (option, value) => {
-  return (dispatch) => {
-    dispatch(setOption(option, value));
   };
 };

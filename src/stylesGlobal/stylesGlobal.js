@@ -2,12 +2,9 @@ import { createTheme } from "@mui/material";
 
 const colorTextMain = "#8b949e";
 const colorTextSecondary = "#c9d1d9";
-
 const colorBackgroundDark = "#0D1117";
 const colorBackgroundLight = "#161b22";
-
 const colorBlue = "#1F6FEB";
-
 const colorBorder = "#30363d";
 const colorButtonHoverBorder = "#8b949e";
 const border = `1px solid ${colorBorder}`;
@@ -79,7 +76,6 @@ const theme = createTheme({
         },
       },
     },
-    // for filters
     MuiAutocomplete: {
       styleOverrides: {
         root: {
@@ -94,7 +90,6 @@ const theme = createTheme({
         },
       },
     },
-    // фон выпадaйки
     MuiPaper: {
       styleOverrides: {
         root: {
@@ -112,7 +107,6 @@ const theme = createTheme({
     MuiInputLabel: {
       color: colorBlue,
     },
-    // spinner
     MuiCircularProgress: {
       styleOverrides: {
         root: {

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { PATH_NAME } from "../../constants";
-import { getOptionToFetch as getOptionToFetchDevops } from "../../redux/developers/actionDevelopers";
-import { getOptionToFetch as getOptionToFetchRepos } from "../../redux/repos/actionRepos";
+import {
+  setOptionReposToFetch,
+  setOptionDevopsToFetch,
+} from "../../redux/actionCreators";
 import { Autocomplete, TextField, Box, Paper, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -35,11 +37,10 @@ export default function SearchFilter({ filter }) {
   const pathName = location.pathname;
   const isRepo = pathName === PATH_NAME.repos;
 
-  const store = isRepo
-    ? useSelector((store) => store.repos)
-    : useSelector((store) => store.developers);
+  const currentValue = isRepo
+    ? useSelector((store) => store.optionsToFetchRepos[option])
+    : useSelector((store) => store.optionsToFetchDevelopers[option]);
 
-  const currentValue = store.options[option];
   const currentLabel = values.find((item) => item.value === currentValue).label;
   const defaultInputWidth = currentLabel.length * 12;
 
@@ -47,16 +48,16 @@ export default function SearchFilter({ filter }) {
 
   const [inputWidth, setInputWidth] = useState(defaultInputWidth);
 
-  console.log("defaultInputWidth", defaultInputWidth);
-  console.log("currentLabel", currentLabel);
-  console.log("inputWidth", inputWidth);
+  // console.log("defaultInputWidth", defaultInputWidth);
+  // console.log("currentLabel", currentLabel);
+  // console.log("inputWidth", inputWidth);
 
   useEffect(() => {
     const needValue = values.find((item) => item.label === value).value;
     setInputWidth(value.length * 12);
     isRepo
-      ? dispatch(getOptionToFetchRepos(option, needValue))
-      : dispatch(getOptionToFetchDevops(option, needValue));
+      ? dispatch(setOptionReposToFetch(option, needValue))
+      : dispatch(setOptionDevopsToFetch(option, needValue));
   }, [value]);
 
   return (
