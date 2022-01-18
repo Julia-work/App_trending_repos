@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     paddingRight: 10,
     paddingBottom: 5,
-    "word-wrap": "break-word"
+    wordWrap:"break-word"
   },
 }));
 
@@ -23,7 +23,7 @@ const CardTitle = ({ url, title,children }) => {
         className={classes.cardTitle}
         underline="hover"
         color="secondary.main"
-        sx={{"word-wrap": "break-word"}}
+        sx={{wordWrap: "break-word"}}
       >
         {children}
       </Link>

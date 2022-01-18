@@ -30,7 +30,7 @@ const DeveloperCard = ({ developer, count }) => {
           justifyContent: "space-between",
         }}
       >
-        <Link href={url} title={author} sx={{ marginRight: 1 }}>
+        <Link href={url} title={author} sx={{ marginRight: 1, fontSize:12 }}>
           {count}
         </Link>
         <Link
@@ -73,7 +73,7 @@ const DeveloperCard = ({ developer, count }) => {
             <Box
               sx={{ display: "flex", flexDirection: "column", flex: "1 0 0" }}
             >
-              <Typography variant="span">
+              <Typography variant="span" fontSize={12}>
                 <LocalFireDepartmentIcon
                   sx={{
                     width: 16,
