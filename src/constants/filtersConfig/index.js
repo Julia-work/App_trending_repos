@@ -1,6 +1,6 @@
-import { DATE_RANGE_LIST } from "./dateRangeList.js";
+import { DATE_RANGE_LIST } from "./dateRangeList";
 import { LANGUAGES_LIST } from "./languagesList.js";
-import { SPOKEN_LANGUAGES_LIST } from "./spokenLanguagesList.js";
+import { SPOKEN_LANGUAGES_LIST } from "./spokenLanguagesList";
 
 export const FILTERS_CONFIG = {
   dateRange:{
