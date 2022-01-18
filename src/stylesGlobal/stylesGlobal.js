@@ -79,7 +79,6 @@ const theme = createTheme({
     },
     MuiAutocomplete: {
       styleOverrides: {
-        root: {},
         input: {
           color: colorTextMain,
           fontSize: 14,

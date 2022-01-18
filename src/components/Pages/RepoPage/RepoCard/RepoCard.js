@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
   cardContainer: {
     padding: 16,
     borderBottom: theme.components.border.main,
+    overflow: "hidden"
   },
   flexContainer: {
     display: "flex",

@@ -16,16 +16,14 @@ const useStyles = makeStyles((theme) => ({
     },
     "& input": {
       boxSizing: "border-box",
-      height: 30,
-      background: "none"
+      height: 40,
     },
   },
   filterWrapper: {
     display: "flex",
-    justifyContent: "space-between",
     alignItems: "center",
     "&:not(:last-child)": {
-      marginRight: 15,
+      marginRight: 5,
     },
     "& *": {
       color: theme.palette.primary.main,
@@ -35,9 +33,6 @@ const useStyles = makeStyles((theme) => ({
     "& input": {
       border: theme.components.border.main,
       borderRadius: "4px",
-    },
-    "& input::selection": {
-      background: "none",
     },
   },
 }));
@@ -60,26 +55,6 @@ export default function SearchFilter({ filter }) {
   const [value, setValue] = useState(currentLabel);
   const [open, setOpen] = useState(false);
 
-  let valueWidth;
-  const valueLength = value.length;
-  switch (true) {
-    case valueLength <= 3:
-      valueWidth = "8ch";
-      break;
-    case valueLength <= 5:
-      valueWidth = "10ch";
-      break;
-    case valueLength <= 10:
-      valueWidth = "13ch";
-      break;
-    case valueLength <= 15:
-      valueWidth = "15ch";
-      break;
-    default:
-      valueWidth = "18ch";
-      break;
-  }
-
   useEffect(() => {
     const needValue = values.find((item) => item.label === value).value;
     isRepo
@@ -95,9 +70,8 @@ export default function SearchFilter({ filter }) {
       <Autocomplete
         classes={classes}
         disableClearable
-        size="small"
         value={value}
-        sx={{ width: valueWidth }}
+        sx={{ width: 140 }}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         onChange={(event, newValue) => {
@@ -107,8 +81,8 @@ export default function SearchFilter({ filter }) {
         PaperComponent={({ children }) => <Paper>{children}</Paper>}
         renderInput={(params) => (
           <TextField
-            class={open && classes.textFieldOpen }
-            sx={{ width: valueWidth }}
+            className={`${open ? classes.textFieldOpen : ""}`}
+            fullWidth
             {...params}
           />
         )}

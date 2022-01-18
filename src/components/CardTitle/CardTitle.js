@@ -8,7 +8,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     paddingRight: 10,
     paddingBottom: 5,
-    wordWrap:"break-word"
+    // wordWrap:"break-word",
+    // wordBreak: "break-all"
   },
 }));
 

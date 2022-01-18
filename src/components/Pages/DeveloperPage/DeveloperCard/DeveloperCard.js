@@ -21,6 +21,7 @@ const DeveloperCard = ({ developer, count }) => {
       sx={{
         padding: 2,
         borderBottom: "1px solid #30363d",
+        overflow: "hidden",
       }}
     >
       <Box
@@ -30,7 +31,7 @@ const DeveloperCard = ({ developer, count }) => {
           justifyContent: "space-between",
         }}
       >
-        <Link href={url} title={author} sx={{ marginRight: 1, fontSize:12 }}>
+        <Link href={url} title={author} sx={{ marginRight: 1, fontSize: 12 }}>
           {count}
         </Link>
         <Link
@@ -44,23 +45,33 @@ const DeveloperCard = ({ developer, count }) => {
         <Box
           sx={{
             display: "flex",
+            justifyContent: "space-between",
             flexGrow: 1,
             alignItems: "flex-start",
-            flexWrap: "wrap",
+            "@media (max-width: 620px)": {
+              flexWrap: "wrap",
+            },
           }}
         >
-          <Box sx={{
-            display: "flex",
-            flexGrow: 1,
-          flexWrap: "wrap"
-          }}>
+          <Box
+            sx={{
+              display: "flex",
+              "@media (max-width: 480px)": {
+                flexWrap: "wrap",
+                marginRight: 0,
+              },
+            }}
+          >
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                flexBasis: "35%",
-                flexWrap: "wrap",
-                marginRight:2
+                flexBasis: "40%",
+                marginRight: 1,
+                "@media (max-width: 480px)": {
+                  flexBasis: "100%",
+                  marginRight: 0,
+                },
               }}
             >
               <CardTitle url={url} title={author}>
@@ -71,7 +82,16 @@ const DeveloperCard = ({ developer, count }) => {
               </Link>
             </Box>
             <Box
-              sx={{ display: "flex", flexDirection: "column", flex: "1 0 0" }}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                flexBasis: "60%",
+                marginRight: 1,
+                "@media (max-width: 480px)": {
+                  flexBasis: "100%",
+                  marginRight: 0,
+                },
+              }}
             >
               <Typography variant="span" fontSize={12}>
                 <LocalFireDepartmentIcon
@@ -100,13 +120,14 @@ const DeveloperCard = ({ developer, count }) => {
                 </Link>
               </Typography>
               <Typography
-              fontSize={12}
-              width={230}
+                fontSize={12}
+                sx={{ wordBreak: "break-all" }}
               >
                 {description ? description : loremIpsum}
               </Typography>
             </Box>
           </Box>
+
           <Box
             sx={{
               display: "flex",
