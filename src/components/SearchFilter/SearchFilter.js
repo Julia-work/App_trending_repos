@@ -52,8 +52,17 @@ export default function SearchFilter({ filter }) {
 
   const currentLabel = values.find((item) => item.value === currentValue).label;
 
+
   const [value, setValue] = useState(currentLabel);
   const [open, setOpen] = useState(false);
+
+  const stringLength = (textString) => {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    context.font = '14px roboto'
+
+    return context.measureText(textString).width;
+  };
 
   useEffect(() => {
     const needValue = values.find((item) => item.label === value).value;
@@ -71,7 +80,7 @@ export default function SearchFilter({ filter }) {
         classes={classes}
         disableClearable
         value={value}
-        sx={{ width: 140 }}
+        sx={{ width: 65 + stringLength(value) }}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         onChange={(event, newValue) => {
